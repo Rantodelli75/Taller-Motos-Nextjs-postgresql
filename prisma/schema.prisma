@@ -13,7 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model usuario {
+model Usuario {
+  Id Int @id @default(autoincrement())
+	nombre String 
+	apellido String
+	cedula Int @unique
+	n_telefono String
+  email String @unique
+  rol rol
+  clave String 
+  fecha_cracion DateTime @default(now())
+  fecha_actualizacion DateTime @updatedAt
+
+  //moto-usuario
+  moto Moto[]
+
+  //usuario-facturas
+  Facturas Facturas?
+}
+
+model Empleado {
   Id Int @id @default(autoincrement())
 	nombre String 
 	apellido String
@@ -23,4 +42,88 @@ model usuario {
   clave String 
   fecha_cracion DateTime @default(now())
   fecha_actualizacion DateTime @updatedAt
+
+  //empleado-reparaciones
+  reparaciones Reparaciones[]
+}
+
+model Moto {
+  Id Int @id @default(autoincrement())
+  marca String
+  modelo String
+  lista_reparaciones Lista_Reparaciones
+  descripcion String
+
+  //moto-usuario
+  usuario Usuario @relation(fields: [usuarioId], references: [Id])
+  usuarioId Int
+
+  //moto-reparaciones
+  reparaciones Reparaciones @relation(fields: [reparacionesId], references: [Id])
+  reparacionesId Int
+
+  //facturas-moto
+  Facturasa Facturas?
+}
+
+enum Lista_Reparaciones {
+  mantenimiento_General
+  combio_aceite
+  cambio_cauchos
+  parche_tripa
+  cambio_amortiguador
+  cambio_monoshock
+  cambio_rodamiento
+  cambio_cadena
+  cambio_corona_d
+  cambio_corona_t
+  cambio_bombillo_principal
+  cambio_bombillo_cruce
+  cambio_bombillo_freno
+  cambio_parrillera
+  ajuste_general
+  cambio_bateria
+  revision_electrica
+  cambio_pastillas_d
+  cambio_pastillas_t
+  cambio_tambor_d
+  cambio_tambor_t
+}
+
+model Reparaciones {
+  Id Int @id @default(autoincrement())
+  descripcion String 
+
+  //empleado-reparaciones
+  empleado Empleado @relation(fields: [empleadoId], references: [Id])
+  empleadoId Int
+
+  //reparaciones-moto
+  moto Moto[]
+
+  //factura-reparaciones
+  Facturas Facturas?
+}
+
+model Facturas {
+  Id Int @id @default(autoincrement())
+  fecha DateTime @default(now())
+
+  //factura-cliente
+  usuario Usuario @relation(fields: [usuarioId], references: [Id])
+  usuarioId Int @unique
+
+  //factura-reparaciones
+  reparaciones Reparaciones @relation(fields: [reparacionesId], references: [Id])
+  reparacionesId Int @unique
+
+  //factura-moto
+  moto Moto @relation(fields: [motoId], references: [Id])
+  motoId Int @unique
+}
+
+enum rol {
+  admin
+  cliente
+  empleado
 }
