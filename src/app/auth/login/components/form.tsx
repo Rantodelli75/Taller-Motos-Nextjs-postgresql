@@ -16,7 +16,7 @@ const Form = () => {
       </div>
       <div className='w-full' >
         <input type='text' placeholder='Email' className="flex max-w-full rounded-xl p-4 bg-gray-100 w-full h-12"/>
-        <input type='password' placeholder='Contraseña' className="mt-4 mb-4 rounded-xl p-4 w-full bg-gray-100 flex h-12"/>
+        <input type='password' placeholder='Contraseña' className="text-slate-900 mt-4 mb-4 rounded-xl p-4 w-full bg-gray-100 flex h-12"/>
         <label className="flex items-center space-x-2">
           <input
             type="checkbox"
