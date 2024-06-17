@@ -88,18 +88,18 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
                 </div>
             <table className="min-w-full table-auto">
                 <thead className="justify-between">
-                    <tr className="bg-gray-800">
+                    <tr className="bg-gray-300">
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Eliminar</span>
+                            <span className="text-gray-600">Eliminar</span>
                         </th>
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Servicio</span>
+                            <span className="text-gray-600">Servicio</span>
                         </th>
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Costos</span>
+                            <span className="text-gray-600">Costos</span>
                         </th>
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Tiempo estimado</span>
+                            <span className="text-gray-600">Tiempo estimado</span>
                         </th>
                     </tr>
                 </thead>
@@ -109,21 +109,21 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
                 <td className="px-4 py-2">
                     <button
                         onClick={() => handleRemoveService(index)}
-                        className="text-red-500 hover:text-red-700"
+                        className="text-amber-600 font-bold hover:text-amber-700"
                     >
                         ✕
                     </button>
                 </td>
-                <td className="px-16 py-2 flex justify-center">
+                <td className="px-16 py-2 font-serif text-gray-700 font-semibold flex justify-center">
                     {service.name}
                 </td>
-                <td className="px-16 py-2">$ {service.cost.toLocaleString()}</td>
-                <td className="px-16 py-2">{service.estimatedTime}</td>
+                <td className="px-16 py-2 text-green-800 font-semibold">$ {service.cost.toLocaleString()}</td>
+                <td className="px-16 py-2 font-serif text-gray-700 font-semibold">{service.estimatedTime}</td>
             </tr>
             ))}
             </tbody>
             </table>
-                <div className="flex justify-end font-bold mt-4">
+                <div className="flex justify-end font-bold mt-4 mr-4 text-green-800">
                 Total: $ {totalCost.toLocaleString()}
                 </div>
               {/* Fin de la gestión de servicios */}
