@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Register() {
   return (
     <section className='h-full flex flex-col items-center bg-white justify-center'>
-      <Image className="size-72" src={require('@/app/elements1/sport_bgr.png')} alt="Logo" />
+      <Image className="size-72" src={require('@/app/elements1/fmclogo.png')} alt="Logo" />
       <Form />
     </section>
   );

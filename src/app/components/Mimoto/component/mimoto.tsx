@@ -72,7 +72,9 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
                         className="mt-2 rounded-xl mb-3 p-3 w-max text-slate-950 bg-gray-200 flex h-12 placeholder-slate-400 text-md"
                     >
                     <option value=""></option>
-                    {availableServices.map((service, index) => (
+                    {availableServices.filter(
+                        service => !services.some(addedService => addedService.name === service.name)
+                        ).map((service, index) => (
                     <option key={index} value={service.name}>{service.name}</option>
                     ))}
                     </select>

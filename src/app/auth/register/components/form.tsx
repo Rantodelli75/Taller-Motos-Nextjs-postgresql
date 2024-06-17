@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 
 interface IFormInput{
   nombre: string
+  apellido: string
   cedula: string
   telefono: string
   email: string
@@ -25,6 +26,7 @@ function Registerpage()  {
         method: 'POST',
         body: JSON.stringify({
           nombre: data.nombre,
+          apellido: data.apellido,
           cedula: data.cedula,
           n_telefono: data.telefono,
           email: data.email,
@@ -50,16 +52,26 @@ function Registerpage()  {
       <p className='text-gray-500 text-sm'>Ingresa los siguientes datos para realizar el registro</p>
       </div>
     <form onSubmit={onSubmit}>
-      <label className='text-gray-500 ml-3 mt-3 text-sm'>NOMBRE Y APELLIDO </label>
+      <label className='text-gray-500 ml-3 mt-3 text-sm'>NOMBRE </label>
       <input
         className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-12'
         type="text"
-        placeholder={"Nombre"}
         required
         {...register("nombre", {required: {
           value: true,
           message: 'Campo vacío'
       }})}
+      />
+
+      <label className='text-gray-500 ml-3 mt-3 text-sm'>APELLIDO </label>
+        <input
+          className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-12'
+          type="text"
+          required
+          {...register("apellido", {required: {
+            value: true,
+            message: 'Campo vacío'
+          }})}
       />
 
         <label className='text-gray-500 ml-3 mt-2 mb--3 text-sm'>C.I </label>
