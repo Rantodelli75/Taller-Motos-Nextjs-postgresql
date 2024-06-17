@@ -7,30 +7,30 @@ interface ServiceItem {
 }
 
 const availableServices: ServiceItem[] = [
-    { name: 'Mantenimiento General', cost: 50, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Aceite', cost: 20, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Cauchos', cost: 130, estimatedTime: '30 minutos'},
+    { name: 'Mantenimiento General', cost: 50, estimatedTime: '1 hora'},
+    { name: 'Cambio de Aceite', cost: 20, estimatedTime: '15 minutos'},
+    { name: 'Cambio de Cauchos', cost: 130, estimatedTime: '20 minutos'},
     { name: 'Parche de Tripa', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Amortiguador', cost: 85, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Monoshock', cost: 65, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Rodamientos', cost: 40, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Cadena', cost: 20, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Corona D', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Corona T', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Bombillo Principal', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Bombillo Freno', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Bombillo Cruce', cost: 10, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Parrillera', cost: 35, estimatedTime: '30 minutos'},
-    { name: 'Ajuste General', cost: 20, estimatedTime: '30 minutos'},
+    { name: 'Cambio de Amortiguador', cost: 85, estimatedTime: '1 hora'},
+    { name: 'Cambio de Monoshock', cost: 65, estimatedTime: '45 minutos'},
+    { name: 'Cambio de Rodamientos', cost: 40, estimatedTime: '20 minutos'},
+    { name: 'Cambio de Cadena', cost: 20, estimatedTime: '15 minutos'},
+    { name: 'Cambio de Corona D', cost: 15, estimatedTime: '20 minutos'},
+    { name: 'Cambio de Corona T', cost: 15, estimatedTime: '20 minutos'},
+    { name: 'Cambio de Bombillo Principal', cost: 15, estimatedTime: '10 minutos'},
+    { name: 'Cambio de Bombillo Freno', cost: 15, estimatedTime: '10 minutos'},
+    { name: 'Cambio de Bombillo Cruce', cost: 10, estimatedTime: '10 minutos'},
+    { name: 'Cambio de Parrillera', cost: 35, estimatedTime: '15 minutos'},
+    { name: 'Ajuste General', cost: 20, estimatedTime: '35 minutos'},
     { name: 'Cambio de Batería', cost: 55, estimatedTime: '30 minutos'},
-    { name: 'Revisión Electrica', cost: 5, estimatedTime: '30 minutos'},
+    { name: 'Revisión Electrica', cost: 5, estimatedTime: '15 minutos'},
   // ... otros servicios disponibles
 ];
 
 const Registro = () => {
     const [services, setServices] = useState<ServiceItem[]>([
-    { name: 'Cambio de Amortiguador', cost: 150, estimatedTime: '1-2 días' },
-    { name: 'Revisión Eléctrica', cost: 40, estimatedTime: '5 horas' },
+    { name: 'Cambio de Amortiguador', cost: 150, estimatedTime: '1 hora' },
+    { name: 'Revisión Eléctrica', cost: 40, estimatedTime: '15 minutos' },
     ]);
     const [selectedService, setSelectedService] = useState<string>('');
 
