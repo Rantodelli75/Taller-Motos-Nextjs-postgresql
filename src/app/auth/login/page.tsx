@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Login() {
   return (
     <section className='h-full flex flex-col bg-white items-center justify-center'>
-      <Image className="size-72" src={require('@/app/elements1/sport_bgr.png')} alt="Logo" />
+      <Image className="size-72" src={require('@/app/elements1/fmclogo.png')} alt="Logo" />
       <Form />
     </section>
   );
