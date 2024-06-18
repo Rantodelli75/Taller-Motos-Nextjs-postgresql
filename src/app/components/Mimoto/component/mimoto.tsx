@@ -7,30 +7,30 @@ interface ServiceItem {
 }
 
 const availableServices: ServiceItem[] = [
-    { name: 'Mantenimiento General', cost: 50, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Aceite', cost: 20, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Cauchos', cost: 130, estimatedTime: '30 minutos'},
+    { name: 'Mantenimiento General', cost: 50, estimatedTime: '1 hora'},
+    { name: 'Cambio de Aceite', cost: 20, estimatedTime: '15 minutos'},
+    { name: 'Cambio de Cauchos', cost: 130, estimatedTime: '20 minutos'},
     { name: 'Parche de Tripa', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Amortiguador', cost: 85, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Monoshock', cost: 65, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Rodamientos', cost: 40, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Cadena', cost: 20, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Corona D', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Corona T', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Bombillo Principal', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Bombillo Freno', cost: 15, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Bombillo Cruce', cost: 10, estimatedTime: '30 minutos'},
-    { name: 'Cambio de Parrillera', cost: 35, estimatedTime: '30 minutos'},
-    { name: 'Ajuste General', cost: 20, estimatedTime: '30 minutos'},
+    { name: 'Cambio de Amortiguador', cost: 85, estimatedTime: '1 hora'},
+    { name: 'Cambio de Monoshock', cost: 65, estimatedTime: '45 minutos'},
+    { name: 'Cambio de Rodamientos', cost: 40, estimatedTime: '20 minutos'},
+    { name: 'Cambio de Cadena', cost: 20, estimatedTime: '15 minutos'},
+    { name: 'Cambio de Corona D', cost: 15, estimatedTime: '20 minutos'},
+    { name: 'Cambio de Corona T', cost: 15, estimatedTime: '20 minutos'},
+    { name: 'Cambio de Bombillo Principal', cost: 15, estimatedTime: '10 minutos'},
+    { name: 'Cambio de Bombillo Freno', cost: 15, estimatedTime: '10 minutos'},
+    { name: 'Cambio de Bombillo Cruce', cost: 10, estimatedTime: '10 minutos'},
+    { name: 'Cambio de Parrillera', cost: 35, estimatedTime: '15 minutos'},
+    { name: 'Ajuste General', cost: 20, estimatedTime: '35 minutos'},
     { name: 'Cambio de Batería', cost: 55, estimatedTime: '30 minutos'},
-    { name: 'Revisión Electrica', cost: 5, estimatedTime: '30 minutos'},
+    { name: 'Revisión Electrica', cost: 5, estimatedTime: '15 minutos'},
   // ... otros servicios disponibles
 ];
 
 const Registro = () => {
     const [services, setServices] = useState<ServiceItem[]>([
-    { name: 'Cambio de Amortiguador', cost: 150, estimatedTime: '1-2 días' },
-    { name: 'Revisión Eléctrica', cost: 40, estimatedTime: '5 horas' },
+    { name: 'Cambio de Amortiguador', cost: 150, estimatedTime: '1 hora' },
+    { name: 'Revisión Eléctrica', cost: 40, estimatedTime: '15 minutos' },
     ]);
     const [selectedService, setSelectedService] = useState<string>('');
 
@@ -72,7 +72,9 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
                         className="mt-2 rounded-xl mb-3 p-3 w-max text-slate-950 bg-gray-200 flex h-12 placeholder-slate-400 text-md"
                     >
                     <option value=""></option>
-                    {availableServices.map((service, index) => (
+                    {availableServices.filter(
+                        service => !services.some(addedService => addedService.name === service.name)
+                        ).map((service, index) => (
                     <option key={index} value={service.name}>{service.name}</option>
                     ))}
                     </select>
@@ -86,18 +88,18 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
                 </div>
             <table className="min-w-full table-auto">
                 <thead className="justify-between">
-                    <tr className="bg-gray-800">
+                    <tr className="bg-gray-300">
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Eliminar</span>
+                            <span className="text-gray-600">Eliminar</span>
                         </th>
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Servicio</span>
+                            <span className="text-gray-600">Servicio</span>
                         </th>
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Costos</span>
+                            <span className="text-gray-600">Costos</span>
                         </th>
                         <th className="px-16 py-2">
-                            <span className="text-gray-300">Tiempo estimado</span>
+                            <span className="text-gray-600">Tiempo estimado</span>
                         </th>
                     </tr>
                 </thead>
@@ -107,21 +109,21 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
                 <td className="px-4 py-2">
                     <button
                         onClick={() => handleRemoveService(index)}
-                        className="text-red-500 hover:text-red-700"
+                        className="text-amber-600 font-bold hover:text-amber-700"
                     >
                         ✕
                     </button>
                 </td>
-                <td className="px-16 py-2 flex justify-center">
+                <td className="px-16 py-2 font-serif text-gray-700 font-semibold flex justify-center">
                     {service.name}
                 </td>
-                <td className="px-16 py-2">$ {service.cost.toLocaleString()}</td>
-                <td className="px-16 py-2">{service.estimatedTime}</td>
+                <td className="px-16 py-2 text-green-800 font-semibold">$ {service.cost.toLocaleString()}</td>
+                <td className="px-16 py-2 font-serif text-gray-700 font-semibold">{service.estimatedTime}</td>
             </tr>
             ))}
             </tbody>
             </table>
-                <div className="flex justify-end font-bold mt-4">
+                <div className="flex justify-end font-bold mt-4 mr-4 text-green-800">
                 Total: $ {totalCost.toLocaleString()}
                 </div>
               {/* Fin de la gestión de servicios */}
