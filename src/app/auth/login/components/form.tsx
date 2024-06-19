@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 
 
 interface IFormInput{
-  correo: string
+  email: string
   clave: string
 }
 
@@ -20,7 +20,7 @@ function LoginPage() {
         console.log(data)
 
         const res = await signIn('credentials', {
-            correo: data.correo,
+            email: data.email,
             clave: data.clave,
             redirect: false
         })
@@ -29,7 +29,7 @@ function LoginPage() {
         if (res.error){
             alert(res.error)
         } else {
-            router.push('/app')
+            router.push('/..')
         }
     })
 
@@ -41,9 +41,31 @@ function LoginPage() {
             Ingrese su correo y contraseña para ingresar
         </p>
       </div>
+
+      <form onSubmit={onSubmit}>
       <div className='w-full' >
-        <input type='text' placeholder='Email' className="flex max-w-full rounded-xl p-4 bg-gray-100 w-full h-12"/>
-        <input type='password' placeholder='Contraseña' className="text-slate-900 mt-4 mb-4 rounded-xl p-4 w-full bg-gray-100 flex h-12"/>
+        <input type='email' placeholder={'Email'} className="flex max-w-full rounded-xl p-4 bg-gray-100 w-full h-12"
+        {...register("email", {
+                    required: {
+                        value: true,
+                        message: 'Campo vacío'
+                    }
+                })}                />
+                {errors.email && (
+                    <span>{errors.email.message}</span>
+                )}
+
+        <input type='password' placeholder='Contraseña' className="text-slate-900 mt-4 mb-4 rounded-xl p-4 w-full bg-gray-100 flex h-12"
+        {...register("clave", {
+                    required: {
+                        value: true,
+                        message: 'Campo vacío'
+                    }
+                })}                />
+                {errors.clave && (
+                    <span>{errors.clave.message}</span>
+                )}
+
         <label className="flex items-center space-x-2">
           <input
             type="checkbox"
@@ -63,6 +85,7 @@ function LoginPage() {
           </button>
         </div>
       </div>
+      </form>
     </div>
   );
 };
