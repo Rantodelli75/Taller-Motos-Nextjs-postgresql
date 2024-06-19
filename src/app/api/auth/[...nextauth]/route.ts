@@ -1,18 +1,19 @@
-import { CredentialsProvider } from 'next-auth/providers/credentials';
+import  CredentialsProvider  from 'next-auth/providers/credentials';
 import { AuthOptions } from "@/libs/auth"
 import NextAuth from "next-auth"
 import db from '@/libs/db';
+import bcrypt from 'bcrypt'
 
 const authOptions = {
     providers: [
-        CredentialsProvider ({
+        CredentialsProvider({
           name: "Credentials",
           credentials: {
-            correo: { label: "email", type: "email", placeholder: "jsmith" },
+            email: { label: "Username", type: "text", placeholder: "jsmith" },
             clave: { label: "Password", type: "password" }
           },
-          async authorize(credentials: { correo: any; clave: any; email: any; }, req: any) {
-            if (!credentials ||!credentials.correo ||!credentials.clave) {
+          async authorize(credentials, req) {
+            if (!credentials ||!credentials.email ||!credentials.clave) {
               return null;
             }
           
@@ -28,7 +29,7 @@ const authOptions = {
           
             console.log(userFound);
           
-            const matchPassword = await crypto.compare(credentials.clave, userFound.clave);
+            const matchPassword = await bcrypt.compare(credentials.clave, userFound.clave);
           
             //si la clave es incorrecto envia ese mensaje
             if (!matchPassword) throw new Error('Datos incorrectos')
@@ -46,9 +47,8 @@ const authOptions = {
 
 
 
-
 const handler = NextAuth(
-    AuthOptions
+    authOptions
 )
 
 export { handler as GET, handler as POST }

@@ -1,10 +1,37 @@
 "use client"
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
+import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 
 
-const Form = () => {
-  const router = useRouter();
+interface IFormInput{
+  correo: string
+  clave: string
+}
+
+function LoginPage() {
+
+  const {register, handleSubmit,formState: {errors}} = useForm<IFormInput>()
+
+    const router = useRouter()
+
+    const onSubmit = handleSubmit(async (data) => {
+        console.log(data)
+
+        const res = await signIn('credentials', {
+            correo: data.correo,
+            clave: data.clave,
+            redirect: false
+        })
+        console.log(res)
+
+        if (res.error){
+            alert(res.error)
+        } else {
+            router.push('/app')
+        }
+    })
 
   return (
     <div className='w-full max-w-md'>
@@ -40,4 +67,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default LoginPage;
