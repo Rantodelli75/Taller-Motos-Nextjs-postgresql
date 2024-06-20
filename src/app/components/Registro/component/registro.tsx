@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import router from 'next/router';
+import { useFormState } from 'react-dom';
+import { saveMoto } from '@/libs/actions';
+
+
 
 const Registro = () => {
+    const [state, formAction] = useFormState(saveMoto, null)
+
+
     return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
         <h1 className="font-serif text-slate-600 text-xl font-bold mb-4 mt-8">NUEVO REGISTRO</h1>
@@ -49,7 +56,9 @@ const Registro = () => {
                 <div className='mb-4 mr-8'>
                 <p className='font-serif font-semibold text-white text-l p-2 pl-10 w-full m-4 rounded-full bg-gray-600'>DATOS DEL VEHÍCULO</p>
                 </div>
-                <form className='mb-12 ml-8'>
+
+                {(titleProps) => (
+                <form className='mb-12 ml-8' action={formAction}>
                   {/* ... Contenido del segundo formulario ... */}
                 <label className='text-gray-500 ml-3 mt-1 text-sm'>MARCA </label>
                 <input
@@ -57,6 +66,8 @@ const Registro = () => {
                     type="select"
                     placeholder=""
                     required
+                    
+
                 />
                 <label className='text-gray-500 ml-3 mt-2 mb--3 text-sm'>MODELO </label>
                 <input
@@ -66,12 +77,16 @@ const Registro = () => {
                 required
                     />
                 <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>NRO° DE PLACA </label>
-                        <input
+                <input
+                name='placa'
                 className='mt-2 rounded-xl mb-3 text-slate-950 p-3 w-9/12 bg-gray-200 flex h-10 placeholder-slate-400'
                 type="text"
                 placeholder="EJ: AE139MI"
                 required
                 />
+                <div id="name-error" aria-live="polite" aria-atomic='true'>
+                        <p>{state?.Error?.placa}</p>
+                    </div>
                 <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>KILOMETRAJE </label>
                 <input
                 className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400 text-md'
@@ -80,6 +95,7 @@ const Registro = () => {
                 required
                 />
                 </form>
+                )}
             </div>
             </div>
             <div className="flex justify-center mt-2">

@@ -29,7 +29,7 @@ const authOptions = {
           
             console.log(userFound);
           
-            const matchPassword = await bcrypt.compare(credentials.clave, userFound.clave);
+            const matchPassword = bcrypt.compare(credentials.clave, userFound.clave);
           
             //si la clave es incorrecto envia ese mensaje
             if (!matchPassword) throw new Error('Datos incorrectos')

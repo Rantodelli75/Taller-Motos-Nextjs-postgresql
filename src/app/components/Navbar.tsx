@@ -5,23 +5,7 @@ import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import { useRouter } from 'next/navigation';
 
 
-export const Navlinks = [
-{
-    id: 1,
-    name: "HOME",
-    link: "/#",
-},
-{
-    id: 2,
-    name: "ACERCA DE",
-    link: "#About",
-},
-{
-    id: 3,
-    name: "BOOKING",
-    link: "#Booking",
-},
-];
+
 
 const Navbar = () => {
 const [showMenu, setShowMenu] = useState(false);
@@ -36,6 +20,7 @@ const toggleMenu = () => {
     }
 
   //const isAuthenticated = Boolean(currentUser);
+  const router = useRouter()
 return (
     <div
         className=" z-10 shadow-lg w-full dark:text-white duration-300 bg-white"
@@ -65,7 +50,7 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-                        href="#Booking"
+                        onClick={() => router.push('/components/Mimoto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     MI MOTO
@@ -73,7 +58,6 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-                        href="/auth/login"
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO
@@ -87,22 +71,7 @@ return (
                 </ul>
             </nav>
           {/* Mobile view  */}
-        <div className="flex items-center gap-4  ">
-            {/* Mobile Hamburger icon */}
-            {showMenu ? (
-                <HiMenuAlt1
-                    onClick={toggleMenu}
-                    className=" cursor-pointer transition-all"
-                    size={30}
-                />
-            ) : (
-                <HiMenuAlt3
-                    onClick={toggleMenu}
-                    className="cursor-pointer transition-all"
-                    size={30}
-                />
-            )}
-        </div>
+        
         </div>
     </div>
     </div>

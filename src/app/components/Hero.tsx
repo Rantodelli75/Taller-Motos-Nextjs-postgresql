@@ -49,7 +49,7 @@ const Hero = () => {
                 }}
                 className="rounded-xl bg-neutral-950 hover:bg-orange-600 transition duration-500 py-2 px-6 text-white font-semibold"
             >
-                <a href="#">Registrar Moto</a> 
+                <a onClick={() => router.push('/components/Registro')}>Registrar Moto</a> 
             </button>
         </div>
         </div>

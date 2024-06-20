@@ -16,12 +16,11 @@ datasource db {
 model Usuario {
   Id Int @id @default(autoincrement())
 	nombre String 
-  apellido String
 	cedula String @unique
 	n_telefono String @unique
   email String @unique
   rol rol @default(cliente)
-  clave String 
+  clave String?
   fecha_cracion DateTime @default(now())
   fecha_actualizacion DateTime @updatedAt
 
@@ -42,6 +41,7 @@ model Empleado {
   clave String 
   fecha_cracion DateTime @default(now())
   fecha_actualizacion DateTime @updatedAt
+  rol rol
 
   //empleado-reparaciones
   reparaciones Reparaciones[]
@@ -51,8 +51,8 @@ model Moto {
   Id Int @id @default(autoincrement())
   marca String
   modelo String
-  lista_reparaciones Lista_Reparaciones
-  descripcion String
+  placa String @unique
+  kilometraje Int 
 
   //moto-usuario
   usuario Usuario @relation(fields: [usuarioId], references: [Id])
@@ -64,6 +64,17 @@ model Moto {
 
   //facturas-moto
   Facturasa Facturas?
+}
+
+model selec_servicios {
+  Id Int @id @default(autoincrement())
+  lista_reparaciones Lista_Reparaciones
+  //falta agregar precios
+
+
+  //enlace servicios-reparaciones
+  reparaciones Reparaciones[]
+
 }
 
 enum Lista_Reparaciones {
@@ -103,6 +114,11 @@ model Reparaciones {
 
   //factura-reparaciones
   Facturas Facturas?
+
+  //select_servicios-reparaciones
+  select_servicios selec_servicios @relation(fields: [serviciosId], references: [Id])
+  serviciosId Int
+
 }
 
 model Facturas {
