@@ -4,9 +4,11 @@ import motobg from "@/app/elements1/motobg.png"
 import motobackground from "@/app/elements1/motobackground.png"
 import AOS from "aos";
 import { link } from "fs";
+import { getServerSession } from 'next-auth';
+import { AuthOptions } from '@/libs/auth';
 /* eslint-disable @next/next/no-img-element */
 
-const Hero = () => {
+const Hero =  () => {
     const router = useRouter();
     return (
     <div className="mt-1 mb-3">

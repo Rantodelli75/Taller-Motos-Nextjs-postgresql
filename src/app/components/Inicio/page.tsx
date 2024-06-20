@@ -6,14 +6,15 @@ import "aos/dist/aos.css";
 
 // Component import
 import Navbar from "@/app/components/Inicio/components/Navbar";
-import Registro from "@/app/components/Registro/component/registro"
+import Hero from "@/app/components/Inicio/components/Hero";
 
 const App = () => {
   // dark mode start
-const [theme, setTheme] = useState(
+    const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-);
-const element = document.documentElement;
+    );
+    
+    const element = document.documentElement;
 
     useEffect(() => {
     if (theme === "light") {
@@ -23,24 +24,24 @@ const element = document.documentElement;
         element.classList.remove("dark");
         localStorage.setItem("theme", "light");
     }
-}, [element.classList, theme]);
+    }, [element.classList, theme]);
   // dark mode end
 
     React.useEffect(() => {
-    AOS.init({
-        offset: 100,
-        duration: 800,
-        easing: "ease-in-sine",
-        delay: 100,
-    });
+        AOS.init({
+            offset: 100,
+            duration: 800,
+            easing: "ease-in-sine",
+            delay: 100,
+        });
     AOS.refresh();
-}, []);
+    }, []);
     return (
-    <div className="scroll-smooth bg-white text-black overflow-x-hidden">
+        <div className="scroll-smooth bg-white text-black overflow-x-hidden">
         <Navbar />
-        <Registro/>
-    </div>
-);
+        <Hero />
+        </div>
+    );
 };
 
 export default App;

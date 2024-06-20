@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 // Component import
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/Inicio/components/Navbar";
 import Contacto from "@/app/components/Contacto/component/contacto"
 /*import Mimoto from "@/app/components/Mimoto/component/mimoto"*/
 
