@@ -5,6 +5,7 @@ import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import { useRouter } from 'next/navigation';
 
 
+
 export const Navlinks = [
 {
     id: 1,
@@ -36,6 +37,7 @@ const toggleMenu = () => {
     }
 
   //const isAuthenticated = Boolean(currentUser);
+
 return (
     <div
         className=" z-10 shadow-lg w-full dark:text-white duration-300 bg-white"
@@ -49,7 +51,7 @@ return (
                 <ul className="flex items-center gap-8">
                 <li className="py-4">
                 <a
-                    href="/"
+                    href="#Inicio"
                     className=" text-lg font-medium  text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                 >
                 INICIO
@@ -57,7 +59,7 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-                        href="#About"
+                        href=""
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     NOSOTROS
@@ -65,7 +67,7 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-                        href="#Booking"
+                        href="/src/app/components/Mimoto"
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     MI MOTO
@@ -73,7 +75,7 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-                        href="/auth/login"
+                        href="/src/app/components/"
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO
