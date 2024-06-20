@@ -36,7 +36,7 @@ export async function POST(request: { json: () => any }) {
 
 
   
-    const clavesegura = await bcrypt .hash(data.clave, 10)
+    const clavesegura = await bcrypt.hash(data.clave, 10)
     const newUser = await db.usuario.create({
         data: {
             nombre: data.nombre,

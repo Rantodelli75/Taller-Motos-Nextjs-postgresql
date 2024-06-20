@@ -8,10 +8,7 @@ import { getServerSession } from 'next-auth';
 import { AuthOptions } from '@/libs/auth';
 /* eslint-disable @next/next/no-img-element */
 
-const Hero = async () => {
-    const session = await getServerSession(AuthOptions)
-    console.log(session)
-    
+const Hero =  () => {
     const router = useRouter();
     return (
     <div className="mt-1 mb-3">
