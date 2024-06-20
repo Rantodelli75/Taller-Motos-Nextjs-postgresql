@@ -1,10 +1,37 @@
 "use client"
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
+import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 
 
-const Form = () => {
-  const router = useRouter();
+interface IFormInput{
+  email: string
+  clave: string
+}
+
+function LoginPage() {
+
+  const {register, handleSubmit,formState: {errors}} = useForm<IFormInput>()
+
+    const router = useRouter()
+
+    const onSubmit = handleSubmit(async (data) => {
+        console.log(data)
+
+        const res = await signIn('credentials', {
+            email: data.email,
+            clave: data.clave,
+            redirect: false
+        })
+        console.log(res)
+
+        if (res.error){
+            alert(res.error)
+        } else {
+            router.push('/..')
+        }
+    })
 
   return (
     <div className='w-full max-w-md'>
@@ -14,9 +41,31 @@ const Form = () => {
             Ingrese su correo y contraseña para ingresar
         </p>
       </div>
+
+      <form onSubmit={onSubmit}>
       <div className='w-full' >
-        <input type='text' placeholder='Email' className="flex max-w-full rounded-xl p-4 bg-gray-100 w-full h-12"/>
-        <input type='password' placeholder='Contraseña' className="text-slate-900 mt-4 mb-4 rounded-xl p-4 w-full bg-gray-100 flex h-12"/>
+        <input type='email' placeholder={'Email'} className="flex max-w-full rounded-xl p-4 bg-gray-100 w-full h-12"
+        {...register("email", {
+                    required: {
+                        value: true,
+                        message: 'Campo vacío'
+                    }
+                })}                />
+                {errors.email && (
+                    <span>{errors.email.message}</span>
+                )}
+
+        <input type='password' placeholder='Contraseña' className="text-slate-900 mt-4 mb-4 rounded-xl p-4 w-full bg-gray-100 flex h-12"
+        {...register("clave", {
+                    required: {
+                        value: true,
+                        message: 'Campo vacío'
+                    }
+                })}                />
+                {errors.clave && (
+                    <span>{errors.clave.message}</span>
+                )}
+
         <label className="flex items-center space-x-2">
           <input
             type="checkbox"
@@ -36,8 +85,9 @@ const Form = () => {
           </button>
         </div>
       </div>
+      </form>
     </div>
   );
 };
 
-export default Form;
+export default LoginPage;
