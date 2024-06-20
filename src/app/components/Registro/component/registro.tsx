@@ -11,18 +11,18 @@ const Registro = () => {
                 <div className="flex justify-between">
                     <div className='w-full max-w-md'>
                         <div className='mb-4 mr-10'>
-                        <p className='font-serif font-semibold text-white text-l p-2 pl-10 w-full m-4 mb-4 rounded-full bg-gray-600'>   TUS DATOS</p>
+                        <p className='font-serif font-semibold text-white text-l p-2 pl-10 w-full m-4 mb-4 rounded-full bg-gray-600'> DATOS DEL CLIENTE</p>
                         </div>
                 <form className='mb-12 ml-8'>
                   {/* ... Contenido del primer formulario ... */}
-                <label className='text-gray-500 ml-3 mt-1 text-sm'>NOMBRE DEL CLIENTE </label>
+                <label className='text-gray-500 ml-3 mt-1 text-sm'>NOMBRE Y APELLIDO </label>
                 <input
                     className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10'
                     type="text"
                     placeholder=""
                     required
                 />
-                <label className='text-gray-500 ml-3 mt-2 mb--3 text-sm'>DIRECCIÓN </label>
+                <label className='text-gray-500 ml-3 mt-2 mb--3 text-sm'>CÉDULA </label>
                 <input
                 className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400'
                 type="text"

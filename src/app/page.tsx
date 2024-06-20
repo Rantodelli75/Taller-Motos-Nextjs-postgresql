@@ -5,8 +5,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 // Component import
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import Navbar from "./components/Inicio/components/Navbar";
+import Hero from "./components/Inicio/components/Hero";
 
 const App = () => {
   // dark mode start
