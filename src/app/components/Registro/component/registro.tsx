@@ -57,45 +57,41 @@ const Registro = () => {
                 <p className='font-serif font-semibold text-white text-l p-2 pl-10 w-full m-4 rounded-full bg-gray-600'>DATOS DEL VEHÍCULO</p>
                 </div>
 
-                {(titleProps) => (
-                <form className='mb-12 ml-8' action={formAction}>
-                  {/* ... Contenido del segundo formulario ... */}
-                <label className='text-gray-500 ml-3 mt-1 text-sm'>MARCA </label>
-                <input
-                    className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10'
-                    type="select"
-                    placeholder=""
-                    required
-                    
-
-                />
-                <label className='text-gray-500 ml-3 mt-2 mb--3 text-sm'>MODELO </label>
-                <input
-                className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400'
-                type="select"
-                placeholder="EJ: V-28439221"
-                required
-                    />
-                <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>NRO° DE PLACA </label>
-                <input
-                name='placa'
-                className='mt-2 rounded-xl mb-3 text-slate-950 p-3 w-9/12 bg-gray-200 flex h-10 placeholder-slate-400'
-                type="text"
-                placeholder="EJ: AE139MI"
-                required
-                />
-                <div id="name-error" aria-live="polite" aria-atomic='true'>
-                        <p>{state?.Error?.placa}</p>
-                    </div>
-                <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>KILOMETRAJE </label>
-                <input
-                className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400 text-md'
-                type="number"
-                placeholder="EJ: 1500"
-                required
-                />
-                </form>
-                )}
+                {(titleProps:any) => {
+                                return (
+                                    <form className='mb-12 ml-8' action={formAction}>
+                                        {/* ... Contenido del segundo formulario ... */}
+                                        <label className='text-gray-500 ml-3 mt-1 text-sm'>MARCA </label>
+                                        <input
+                                            className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10'
+                                            type="select"
+                                            placeholder=""
+                                            required />
+                                        <label className='text-gray-500 ml-3 mt-2 mb--3 text-sm'>MODELO </label>
+                                        <input
+                                            className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400'
+                                            type="select"
+                                            placeholder="EJ: V-28439221"
+                                            required />
+                                        <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>NRO° DE PLACA </label>
+                                        <input
+                                            name='placa'
+                                            className='mt-2 rounded-xl mb-3 text-slate-950 p-3 w-9/12 bg-gray-200 flex h-10 placeholder-slate-400'
+                                            type="text"
+                                            placeholder="EJ: AE139MI"
+                                            required />
+                                        <div id="name-error" aria-live="polite" aria-atomic='true'>
+                                            <p>{state?.Error?.placa}</p>
+                                        </div>
+                                        <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>KILOMETRAJE </label>
+                                        <input
+                                            className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400 text-md'
+                                            type="number"
+                                            placeholder="EJ: 1500"
+                                            required />
+                                    </form>
+                                );
+                            }}
             </div>
             </div>
             <div className="flex justify-center mt-2">
