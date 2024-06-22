@@ -9,10 +9,10 @@ const authOptions = {
         CredentialsProvider({
           name: "Credentials",
           credentials: {
-            email: { label: "Username", type: "text", placeholder: "jsmith" },
+            email: { label: "nombre", type: "text", placeholder: "jsmith" },
             clave: { label: "Password", type: "password" }
           },
-          async authorize(credentials, req) {
+          async authorize(credentials) {
             if (!credentials ||!credentials.email ||!credentials.clave) {
               return null;
             }
@@ -47,8 +47,6 @@ const authOptions = {
 
 
 
-const handler = NextAuth(
-    AuthOptions
-)
+const handler = NextAuth (authOptions)
 
 export { handler as GET, handler as POST }
