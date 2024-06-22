@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation';
 
 
 
-<<<<<<< HEAD:src/app/components/Navbar.tsx
-=======
 export const Navlinks = [
 {
     id: 1,
@@ -25,7 +23,6 @@ export const Navlinks = [
     link: "#Booking",
 },
 ];
->>>>>>> f770145c0de3e749db77cd0214a3e763ffcd2209:src/app/components/Inicio/components/Navbar.tsx
 
 const Navbar = () => {
 const [showMenu, setShowMenu] = useState(false);
@@ -40,11 +37,8 @@ const toggleMenu = () => {
     }
 
   //const isAuthenticated = Boolean(currentUser);
-<<<<<<< HEAD:src/app/components/Navbar.tsx
-  const router = useRouter()
-=======
+    const router = useRouter()
 
->>>>>>> f770145c0de3e749db77cd0214a3e763ffcd2209:src/app/components/Inicio/components/Navbar.tsx
 return (
     <div
         className=" z-10 shadow-lg w-full dark:text-white duration-300 bg-white"
@@ -74,11 +68,7 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-<<<<<<< HEAD:src/app/components/Navbar.tsx
                         onClick={() => router.push('/components/Mimoto')}
-=======
-                        href="/src/app/components/Mimoto"
->>>>>>> f770145c0de3e749db77cd0214a3e763ffcd2209:src/app/components/Inicio/components/Navbar.tsx
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     MI MOTO
@@ -86,10 +76,7 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-<<<<<<< HEAD:src/app/components/Navbar.tsx
-=======
                         href="/src/app/components/"
->>>>>>> f770145c0de3e749db77cd0214a3e763ffcd2209:src/app/components/Inicio/components/Navbar.tsx
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO
