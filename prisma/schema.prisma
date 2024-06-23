@@ -53,6 +53,7 @@ model Moto {
   modelo String
   placa String @unique
   kilometraje Int 
+  fecha_entrada DateTime @default(now())
 
   //moto-usuario
   usuario Usuario @relation(fields: [usuarioId], references: [Id])

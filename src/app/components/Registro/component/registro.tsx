@@ -7,7 +7,9 @@ import { useForm } from 'react-hook-form';
 
 
 function Registro () {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: {errors} } = useForm()
+
+    console.log(errors)
 
 
     return (
@@ -101,16 +103,16 @@ function Registro () {
                 required
                 {...register("kilometraje")}
                 />
-                </form>
 
-                
+                <div className="flex justify-center mt-2">
+                <button className='w-3/12 rounded-xl bg-amber-600 border border-amber-600 hover:border-amber-600 hover:bg-white hover:text-amber-600 font-semibold h-12 text-white relative p-1 px-8'>
+                    Enviar
+                </button>
+                </div>
+                </form>
             </div>
             </div>
-            <div className="flex justify-center mt-2">
-            <button className='w-3/12 rounded-xl bg-amber-600 border border-amber-600 hover:border-amber-600 hover:bg-white hover:text-amber-600 font-semibold h-12 text-white relative p-1 px-8'>
-                Enviar
-            </button>
-            </div>
+            
         </div>
     </div>
 </div>
