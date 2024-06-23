@@ -1,9 +1,8 @@
 
 import React, { useState } from "react";
 import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
-import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import { useRouter } from 'next/navigation';
-
+import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
 
 
 
@@ -35,7 +34,7 @@ return (
                 <ul className="flex items-center gap-8">
                 <li className="py-4">
                 <a
-                    href="#Inicio"
+                    onClick={() => router.push('')}
                     className=" text-lg font-medium  text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                 >
                 INICIO
@@ -43,10 +42,10 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-                        href=""
+                        
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
-                    NOSOTROS
+                    SERVICIOS
                     </a>
                 </li>
                 <li className="py-4">
@@ -59,21 +58,29 @@ return (
                 </li>
                 <li className="py-4">
                     <a
-                        href="/src/app/components/"
+                        onClick={() => router.push('/components/Contacto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO
                     </a>
                 </li>
                 <li className="py-4">
-                    <a href="/auth/login" className="text-orange-600 hover:text-amber-700">
+                <Popover placement="bottom" offset={20} showArrow>
+                    <PopoverTrigger>
+                        <a  className="text-orange-600 hover:text-amber-700">
                         <BiUserCircle size={25}/>
-                    </a>
+                        </a>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <div className="px-1 py-2 text-slate-950 bg-gray-200 rounded-xl">
+                            <div className="text-small font-bold">Popover Content</div>
+                            <div className="text-tiny">This is the popover content</div>
+                        </div>
+                    </PopoverContent>
+                </Popover>
                 </li>
                 </ul>
             </nav>
-          {/* Mobile view  */}
-        
         </div>
     </div>
     </div>
