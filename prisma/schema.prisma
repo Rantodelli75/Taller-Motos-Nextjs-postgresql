@@ -20,7 +20,7 @@ model Usuario {
 	n_telefono String @unique
   email String @unique
   rol rol @default(cliente)
-  clave String?
+  clave String
   fecha_cracion DateTime @default(now())
   fecha_actualizacion DateTime @updatedAt
 
@@ -53,6 +53,7 @@ model Moto {
   modelo String
   placa String @unique
   kilometraje Int 
+  fecha_entrada DateTime @default(now())
 
   //moto-usuario
   usuario Usuario @relation(fields: [usuarioId], references: [Id])

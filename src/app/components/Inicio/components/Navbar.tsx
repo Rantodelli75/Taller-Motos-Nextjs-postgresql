@@ -6,23 +6,6 @@ import { useRouter } from 'next/navigation';
 
 
 
-export const Navlinks = [
-{
-    id: 1,
-    name: "HOME",
-    link: "/#",
-},
-{
-    id: 2,
-    name: "ACERCA DE",
-    link: "#About",
-},
-{
-    id: 3,
-    name: "BOOKING",
-    link: "#Booking",
-},
-];
 
 const Navbar = () => {
 const [showMenu, setShowMenu] = useState(false);
