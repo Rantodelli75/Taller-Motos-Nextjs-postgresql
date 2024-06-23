@@ -1,16 +1,59 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import router from 'next/router';
+
 import { useFormState } from 'react-dom';
 import { useForm } from 'react-hook-form';
-
-
+import { useSession } from 'next-auth/react';
+import axios from "axios";
 
 function Registro () {
-    const { register, handleSubmit, formState: {errors} } = useForm()
-
-    console.log(errors)
-
+    const { data: session, status, update } = useSession();
+    const router = useRouter();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [usuarios, setUsuarios] = useState<any[]>([]);
+    const [selectedUser, setSelectedUser] = useState<any>(null);
+  
+    useEffect(() => {
+      /* if (!session || session.rol!== 'empleado') {
+        router.push('/unauthorized');
+      }*/
+    }, [router, session]);
+  
+    useEffect(() => {
+      async function fetchUsuarios() {
+        const response = await axios.get('/api/usuarios'); // Make API call to server-side API
+        console.log(response.config)
+        console.log(response)
+        setUsuarios(response.data);
+      }
+      fetchUsuarios();
+    }, []);
+  
+    const handleUserChange = async (e: any) => {
+      const cedula = e.target.value;
+      if (cedula) {
+        const response = await axios.get(`/api/usuarios/${cedula}`); // Make API call to server-side API
+        setSelectedUser(response.data);
+      } else {
+        setSelectedUser(null);
+      }
+    };
+  
+    useEffect(() => {
+      if (selectedUser) {
+        register('nombre', { value: selectedUser.nombre });
+        register('apellido', { value: selectedUser.apellido });
+        register('email', { value: selectedUser.email });
+        register('telefono', { value: selectedUser.telefono });
+      } else {
+        register('nombre', { value: '' });
+        register('apellido', { value: '' });
+        register('email', { value: '' });
+        register('telefono', { value: '' });
+      }
+    }, [register, selectedUser]);
+  
+    console.log(errors);
 
     return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
@@ -22,38 +65,44 @@ function Registro () {
                         <div className='mb-4 mr-10'>
                         <p className='font-serif font-semibold text-white text-l p-2 pl-10 w-full m-4 mb-4 rounded-full bg-gray-600'> DATOS DEL CLIENTE</p>
                         </div>
-                <form className='mb-12 ml-8'>
-                  {/* ... Contenido del primer formulario ... */}
-                <label className='text-gray-500 ml-3 mt-1 text-sm'>NOMBRE Y APELLIDO </label>
+                        <form className="mb-12 ml-8">
+                <label className="text-gray-500 ml-3 mt-1 text-sm">CÉDULA</label>
+                <select
+                  className="mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10"
+                  onChange={handleUserChange}
+                >
+                  <option value="">Seleccione un usuario</option>
+                  {usuarios.map((usuario) => (
+                    <option key={usuario.cedula} value={usuario.cedula}>
+                      {usuario.cedula}
+                    </option>
+                  ))}
+                </select>
+                <label className="text-gray-500 ml-3 mt-2 mb--3 text-sm">NOMBRE Y APELLIDO</label>
                 <input
-                    className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10'
-                    type="text"
-                    placeholder=""
-                    required
-                    
+                  className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10"
+                  type="text"
+                  placeholder=""
+                  required
+                  {...register('nombre')}
                 />
-                <label className='text-gray-500 ml-3 mt-2 mb--3 text-sm'>CÉDULA </label>
+                <label className="text-gray-500 ml-3 mt-3 mb--3 text-sm">EMAIL</label>
                 <input
-                className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400'
-                type="text"
-                placeholder=""
-                required
-                    />
-                <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>EMAIL </label>
-                        <input
-                className='mt-2 rounded-xl mb-3 text-slate-950 p-3 w-9/12 bg-gray-200 flex h-10 placeholder-slate-400'
-                type="email"
-                placeholder="EJ: marcomartinez@email.com"
-                required
+                  className="mt-2 rounded-xl mb-3 text-slate-950 p-3 w-9/12 bg-gray-200 flex h-10 placeholder-slate-400"
+                  type="email"
+                  placeholder="EJ: marcomartinez@email.com"
+                  required
+                  {...register('email')}
                 />
-                <label className='text-gray-500 ml-3 mt-3 mb--3 text-sm'>TELÉFONO </label>
+                <label className="text-gray-500 ml-3 mt-3 mb--3 text-sm">TELÉFONO</label>
                 <input
-                className='mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400 text-md'
-                type="text"
-                placeholder="EJ: +584125514378"
-                required
+                  className="mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10 placeholder-slate-400 text-md"
+                  type="text"
+                  placeholder="EJ: +584125514378"
+                  required
+                  {...register('telefono')}
                 />
-                </form>
+              </form>
                     </div>
             <div className='w-full max-w-md'>
                 <div className='mb-4 mr-8'>

@@ -35,13 +35,13 @@ const authOptions = {
             if (!matchPassword) throw new Error('Datos incorrectos')
           
             // Devuelve el objeto User si la autenticación es correcta
-            return { id: userFound.Id, name: userFound.nombre, email: userFound.email };
+            return { id: userFound.Id, name: userFound.nombre, email: userFound.email, rol: userFound.rol };
           }
           
         })
       ],
       pages: {
-        signIn: '/auth/signIn'
+        signIn: '/auth/login'
       }
     }
 
