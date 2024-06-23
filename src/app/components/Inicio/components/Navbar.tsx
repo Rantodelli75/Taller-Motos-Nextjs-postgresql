@@ -73,8 +73,8 @@ return (
                     </PopoverTrigger>
                     <PopoverContent>
                         <div className="px-1 py-2 text-slate-950 bg-gray-200 rounded-xl">
-                            <div className="text-small font-bold">Popover Content</div>
-                            <div className="text-tiny">This is the popover content</div>
+                            <div className="text-small font-bold">Aquí va el nombre de usuario</div>
+                            <div className="text-tiny">aquí los datos de usuario</div>
                         </div>
                     </PopoverContent>
                 </Popover>
