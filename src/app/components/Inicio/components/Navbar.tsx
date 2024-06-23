@@ -6,6 +6,26 @@ import { useRouter } from 'next/navigation';
 
 
 
+<<<<<<< HEAD
+=======
+export const Navlinks = [
+{
+    id: 1,
+    name: "HOME",
+    link: "/#",
+},
+{
+    id: 2,
+    name: "ACERCA DE",
+    link: "#About",
+},
+{
+    id: 3,
+    name: "BOOKING",
+    link: "#Booking",
+},
+];
+>>>>>>> 15b2334eae4bfdf4a3f2d6f902616a16be55efc9
 
 const Navbar = () => {
 const [showMenu, setShowMenu] = useState(false);
@@ -20,7 +40,12 @@ const toggleMenu = () => {
     }
 
   //const isAuthenticated = Boolean(currentUser);
+<<<<<<< HEAD
   const router = useRouter()
+=======
+    const router = useRouter()
+
+>>>>>>> 15b2334eae4bfdf4a3f2d6f902616a16be55efc9
 return (
     <div
         className=" z-10 shadow-lg w-full dark:text-white duration-300 bg-white"
@@ -58,6 +83,10 @@ return (
                 </li>
                 <li className="py-4">
                     <a
+<<<<<<< HEAD
+=======
+                        href="/src/app/components/"
+>>>>>>> 15b2334eae4bfdf4a3f2d6f902616a16be55efc9
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO
