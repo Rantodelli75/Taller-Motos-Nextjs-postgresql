@@ -1,41 +1,22 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import prisma from "@/libs/db"
+
+const usuarios = [
+  { cedula: '12345678', nombre: 'John Doe', apellido: 'Doe', email: 'johndoe@example.com', telefono: '0412123456' },
+  { cedula: '23456789', nombre: 'Jane Doe', apellido: 'Doe', email: 'janedoe@example.com', telefono: '0423123456' },
+  // Add more users here
+];
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
-    const usuarios = await prisma.usuario.findMany({
-      select: {
-        Id: true,
-        nombre: true,
-        cedula: true,
-        n_telefono: true,
-        email: true,
-        rol: true,
-      },
-    });
-    return res.json(usuarios);
+    return res.status(200).json(usuarios);
   } else if (req.method === 'GET' && req.query.cedula) {
-    const cedula = parseInt(req.query.cedula, 10);
-    if (isNaN(cedula)) {
-      return res.status(400).json({ error: 'Invalid cedula' });
-    }
-    const user = await prisma.usuario.findFirst({
-      where: {
-        cedula: String(cedula), // Convert cedula to string since it's a string field in the model
-      },
-      select: {
-        Id: true,
-        nombre: true,
-        cedula: true,
-        n_telefono: true,
-        email: true,
-        rol: true,
-      },
-    });
-    if (!user) {
+    const cedula = req.query.cedula;
+    const user = usuarios.find((user) => user.cedula === cedula);
+    if (user) {
+      return res.status(200).json(user);
+    } else {
       return res.status(404).json({ error: 'User not found' });
     }
-    return res.json(user);
   } else {
     return res.status(405).json({ error: 'Method not allowed' });
   }
