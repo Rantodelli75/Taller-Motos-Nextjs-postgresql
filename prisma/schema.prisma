@@ -25,7 +25,7 @@ model Usuario {
   fecha_actualizacion DateTime @updatedAt
 
   //moto-usuario
-  moto Moto[]
+  moto Moto?
 
   //usuario-facturas
   Facturas Facturas?
@@ -44,7 +44,7 @@ model Empleado {
   rol rol
 
   //empleado-reparaciones
-  reparaciones Reparaciones[]
+  reparaciones Reparaciones?
 }
 
 model Moto {
@@ -52,16 +52,16 @@ model Moto {
   marca String
   modelo String
   placa String @unique
-  kilometraje Int 
+  kilometraje String 
   fecha_entrada DateTime @default(now())
 
   //moto-usuario
   usuario Usuario @relation(fields: [usuarioId], references: [Id])
-  usuarioId Int
+  usuarioId Int @unique
 
   //moto-reparaciones
   reparaciones Reparaciones @relation(fields: [reparacionesId], references: [Id])
-  reparacionesId Int
+  reparacionesId Int  @unique
 
   //facturas-moto
   Facturasa Facturas?
@@ -74,7 +74,7 @@ model selec_servicios {
 
 
   //enlace servicios-reparaciones
-  reparaciones Reparaciones[]
+  reparaciones Reparaciones?
 
 }
 
@@ -108,17 +108,17 @@ model Reparaciones {
 
   //empleado-reparaciones
   empleado Empleado @relation(fields: [empleadoId], references: [Id])
-  empleadoId Int
+  empleadoId Int @unique
 
   //reparaciones-moto
-  moto Moto[]
+  moto Moto?
 
   //factura-reparaciones
   Facturas Facturas?
 
   //select_servicios-reparaciones
   select_servicios selec_servicios @relation(fields: [serviciosId], references: [Id])
-  serviciosId Int
+  serviciosId Int @unique
 
 }
 

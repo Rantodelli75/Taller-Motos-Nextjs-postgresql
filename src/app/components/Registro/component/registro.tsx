@@ -6,10 +6,30 @@ import { useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import axios from "axios";
 
+
+//se define la entrada del dato en cada input
+interface IFormInput{
+    marca: string
+    modelo: string
+    placa: string
+    kilometraje: string
+  }
+
+//se define la entrada del dato en cada input
+  interface IFormInput{
+    nombre: string
+    apellido: string
+    cedula: string
+    telefono: string
+    email: string
+    clave: string
+  }
+
+
 function Registro () {
     const { data: session, status, update } = useSession();
     const router = useRouter();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
     const [usuarios, setUsuarios] = useState<any[]>([]);
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -62,6 +82,27 @@ function Registro () {
     }, [register, selectedUser]);
   
     console.log(errors);
+
+
+//captura y envio de datos de la moto a la base de datos
+    const onSubmit = handleSubmit(async (data) => {
+        const res = await fetch('/api/auth/register/moto', {
+          method: 'POST',
+          body: JSON.stringify({
+            marca: data.marca,
+            modelo: data.modelo,
+            placa: data.placa,
+            kilometraje: data.kilometraje
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      })
+      if (res.ok) {
+        router.push('/auth/login')
+      }
+  
+      })
 
     return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
@@ -118,9 +159,7 @@ function Registro () {
                 </div>
 
 
-                <form className='mb-12 ml-8' onSubmit={handleSubmit((data)=> {
-                    console.log(data)
-                })}>
+                <form className='mb-12 ml-8'onSubmit={onSubmit}>
                   {/* ... Contenido del segundo formulario ... */}
                 <label className='text-gray-500 ml-3 mt-1 text-sm'>MARCA </label>
                 <input
