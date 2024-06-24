@@ -32,12 +32,20 @@ function Registro () {
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
     const [usuarios, setUsuarios] = useState<any[]>([]);
     const [selectedUser, setSelectedUser] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
   
     useEffect(() => {
-       if (!session || session.rol!== 'empleado') {
-        router.push('/unauthorized');
-      }
-    }, [router, session]);
+        /*
+        if (status === 'authenticated') {
+            setLoading(false);
+            if (session.user?.rol !== 'empleado') {
+                router.push('/unauthorized');
+            }
+        } else if (status === 'unauthenticated') {
+            setLoading(false);
+            router.push('/api/auth/signin');
+        }*/
+    }, [router, status, session]);
   
     useEffect(() => {
       async function fetchUsuarios() {
@@ -102,7 +110,7 @@ function Registro () {
 
     return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-        <h1 className="font-serif text-slate-600 text-xl font-bold mb-4 mt-8">NUEVO REGISTRO</h1>
+        <h1 className="font-serif text-slate-600 text-xl font-bold mb-4 mt-8">NUEVO REGISTRO ${JSON.stringify(session)}</h1>
         <div className="bg-white shadow-xl rounded-lg p-3 items-center w-9/12 overflow-hidden mb-8">
             <div className="px-4 mb-5">
                 <div className="flex justify-between">
