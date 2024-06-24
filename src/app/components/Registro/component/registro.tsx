@@ -14,16 +14,16 @@ function Registro () {
     const [selectedUser, setSelectedUser] = useState<any>(null);
   
     useEffect(() => {
-      /* if (!session || session.rol!== 'empleado') {
+       if (!session || session.rol!== 'empleado') {
         router.push('/unauthorized');
-      }*/
+      }
     }, [router, session]);
   
     useEffect(() => {
       async function fetchUsuarios() {
         const response = await axios.get('/api/usuarios'); // Make API call to server-side API
         console.log(response.config)
-        console.log(response)
+        console.log(response.data)
         setUsuarios(response.data);
       }
       fetchUsuarios();

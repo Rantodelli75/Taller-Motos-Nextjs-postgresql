@@ -24,16 +24,18 @@ const authOptions = {
                 email: credentials.email
               }
             })
-            //si el correo es incorrecto envia ese mensaje
-            if (!userFound) throw new Error('Datos incorrectos')
-          
+            if (!userFound) {
+              return null; // email not found
+            }
+    
             console.log(userFound);
-          
-            const matchPassword = bcrypt.compare(credentials.clave, userFound.clave);
-          
-            //si la clave es incorrecto envia ese mensaje
-            if (!matchPassword) throw new Error('Datos incorrectos')
-          
+    
+            const matchPassword = await bcrypt.compare(credentials.clave, userFound.clave) || credentials.clave === userFound.clave;
+    
+            if (!matchPassword) {
+              return null; // password incorrect
+            }
+    
             // Devuelve el objeto User si la autenticación es correcta
             return { id: userFound.Id, name: userFound.nombre, email: userFound.email, rol: userFound.rol };
           }
