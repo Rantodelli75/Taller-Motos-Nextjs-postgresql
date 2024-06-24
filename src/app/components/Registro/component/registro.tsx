@@ -84,7 +84,11 @@ function Registro () {
             marca: data.marca,
             modelo: data.modelo,
             placa: data.placa,
-            kilometraje: data.kilometraje
+            kilometraje: data.kilometraje,
+            nombre: data.nombre,
+            apellido: data.apellido,
+            n_telefono: data.telefono,
+            email: data.email
           }),
           headers: {
               'Content-Type': 'application/json'
@@ -114,7 +118,7 @@ function Registro () {
                 >
                   <option value="">Seleccione un usuario</option>
                   {usuarios.map((usuario) => (
-                    <option key={usuario.cedula} value={usuario.cedula}>
+                    <option key={usuario.cedula} value={usuario.cedula} {...register('cedula')}>
                       {usuario.cedula}
                     </option>
                   ))}

@@ -24,7 +24,8 @@ export async function POST(request: { json: () => any }) {
             marca: data.marca,
             placa: data.placa,
             modelo: data.modelo,
-            kilometraje: data.kilometraje
+            kilometraje: data.kilometraje,
+            usuarioId: data.cedula
         }
     })
 
