@@ -191,7 +191,7 @@ function Registro () {
                 type="text"
                 placeholder="EJ: AE139MI"
                 required
-                {...register("modelo")}
+                {...register("placa")}
                 />
 
 
