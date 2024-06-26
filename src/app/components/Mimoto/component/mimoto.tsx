@@ -29,8 +29,8 @@ const availableServices: ServiceItem[] = [
 
 const Registro = () => {
     const [services, setServices] = useState<ServiceItem[]>([
-    { name: 'Cambio de Amortiguador', cost: 150, estimatedTime: '1 hora' },
-    { name: 'Revisión Eléctrica', cost: 40, estimatedTime: '15 minutos' },
+    { name: 'Cambio de Amortiguador', cost: 85, estimatedTime: '1 hora' },
+    { name: 'Revisión Electrica', cost: 5, estimatedTime: '15 minutos'},
     ]);
     const [selectedService, setSelectedService] = useState<string>('');
 
@@ -50,7 +50,7 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
 
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-            <h1 className="font-serif text-slate-600 text-xl font-bold mb-4 mt-6 mr-96">MI MOTO</h1>
+            <h1 className="font-serif text-slate-600 text-xl font-bold mb-4 mt-6">MI MOTO</h1>
                 <div className="bg-white shadow-xl rounded-lg p-16 items-center w-9/12 mb-8">
                     <div className="px-4 mb-5">
                         <div className="flex justify-between">

@@ -35,7 +35,7 @@ return (
                 <ul className="flex items-center gap-8">
                 <li className="py-4">
                 <button
-                    onClick={() => router.push('')}
+                    onClick={() => router.push('/')}
                     className=" text-lg font-medium  text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                 >
                 INICIO
@@ -43,7 +43,7 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Inicio')}
+                        onClick={() => router.push('/components/Servicios')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     SERVICIOS
@@ -63,6 +63,14 @@ return (
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO
+                    </button>
+                </li>
+                <li className="py-4">
+                    <button
+                        onClick={() => router.push('/components/Users')}
+                        className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
+                    >
+                    GESTIONAR
                     </button>
                 </li>
                 <li className="py-4">

@@ -15,54 +15,32 @@ const Users = () => {
                         </div>
                 <form className='mb-12 ml-8'>
                   {/* ... Contenido del primer formulario ... */}
-                    <div className="space-y-7 mt-10">
-                        <div className="flex items-center space-x-2">
-                            <FaUserCircle className="text-amber-500 text-3xl"/>
-                            <span className='font-semibold text-gray-400'>Mortadelo Perez</span>
-                            <div className='items-center flex relative gap-2'>
-                            <span className='flex justify-end ml-36'>
-                                <FaPencilAlt className="text-amber-500 text-l"/>
-                            </span>
-                            <button className='flex justify-end'>
-                                <FaTrash className="text-amber-500 text-l"/>
-                            </button>
-                            </div>
+                    <div className="h-18 relative w-full mt-10 -inset-4 bg-white dark:bg-gray-200 dark:highlight-white/5 shadow-lg ring-1 ring-black/5 rounded-xl flex flex-col divide-y dark:divide-slate-200/5">
+                        <div className="flex items-center gap-4 p-4">
+                            <span className='text-amber-500 text-3xl'><FaUserCircle/></span>
+                                <div className="flex flex-col">
+                                    <strong className="text-slate-600 text-sm font-medium">Mortadelo Martínez</strong>
+                                    <span className="text-slate-500 text-sm font-medium">mdmtz@gmail.com</span>
+                                    <div className='flex mt-2 space-x-2'>
+                                    <button className='text-amber-500 text-md'><FaPencilAlt/></button>
+                                    <button className='text-amber-500 text-md'><FaTrash/></button>
+                                    </div>
+                                    
+                                </div>
                         </div>
-                        <div className="flex items-center space-x-2">
-                            <FaUserCircle className="text-amber-500 text-3xl"/>
-                            <span className='font-semibold text-gray-400'>Pedro Sanchez</span>
-                            <div className='items-center flex relative gap-2'>
-                            <span className='flex justify-end ml-36'>
-                                <FaPencilAlt className="text-amber-500 text-l"/>
-                            </span>
-                            <button className='flex justify-end'>
-                                <FaTrash className="text-amber-500 text-l"/>
-                            </button>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <FaUserCircle className="text-amber-500 text-3xl"/>
-                            <span className='font-semibold text-gray-400'>Pancho Villa</span>
-                            <div className='items-center flex relative gap-2'>
-                            <span className='flex justify-end ml-36'>
-                                <FaPencilAlt className="text-amber-500 text-l"/>
-                            </span>
-                            <button className='flex justify-end'>
-                                <FaTrash className="text-amber-500 text-l"/>
-                            </button>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <FaUserCircle className="text-amber-500 text-3xl"/>
-                            <span className='font-semibold text-gray-400'>Flaco Hernandez</span>
-                            <div className='justify-between items-center flex relative gap-2'>
-                            <span className='flex justify-end'>
-                                <FaPencilAlt className="text-amber-500 text-l"/>
-                            </span>
-                            <button className='flex justify-end'>
-                                <FaTrash className="text-amber-500 text-l"/>
-                            </button>
-                            </div>
+                    </div>
+                    <div className="h-18 relative w-full mt-10 -inset-4 bg-white dark:bg-gray-200 dark:highlight-white/5 shadow-lg ring-1 ring-black/5 rounded-xl flex flex-col divide-y dark:divide-slate-200/5">
+                        <div className="flex items-center gap-4 p-4">
+                            <span className='text-amber-500 text-3xl'><FaUserCircle/></span>
+                                <div className="flex flex-col">
+                                    <strong className="text-slate-600 text-sm font-medium">Potro Álvarez</strong>
+                                    <span className="text-slate-500 text-sm font-medium">ptrvvz@gmail.com</span>
+                                    <div className='flex mt-2 space-x-2'>
+                                    <button className='text-amber-500 text-md'><FaPencilAlt/></button>
+                                    <button className='text-amber-500 text-md'><FaTrash/></button>
+                                    </div>
+                                    
+                                </div>
                         </div>
                     </div>
                 </form>
