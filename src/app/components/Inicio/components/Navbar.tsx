@@ -82,7 +82,7 @@ return (
                 </li>
 
                 {
-                    !data.user ? <a>Iniciar sesion</a> :
+                    !data.user ? <a href="auth/login">Iniciar sesion</a> :
                 
                 <li className="py-4">
                 <Popover placement="bottom" offset={20} showArrow>
@@ -93,8 +93,8 @@ return (
                     </PopoverTrigger>
                     <PopoverContent>
                         <div className="px-1 py-2 text-slate-950 bg-gray-200 rounded-xl w-full h-36">
-                            <div className="text-small font-bold p-2 text-gray-500">Rafael José Covarrubio</div>
-                            <div className="text-tiny p-2 text-gray-400 font-semibold">rafcovte@gmail.com</div>
+                            <div className="text-small font-bold p-2 text-gray-500">Bienvenido</div>
+                            <div className="text-tiny p-2 text-gray-400 font-semibold">{data.user.email}</div>
                             <div className="flex text-orange-600 hover:text-amber-700 p-2">
                             <a  className="flex text-orange-600 hover:text-amber-700" href="../auth/login">
                                 <FaSignOutAlt size={25}/>
