@@ -3,6 +3,7 @@ import React from "react";
 import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import { useRouter } from 'next/navigation';
+import { createClient } from "@/utils/supabase/server";
 
 
 export const Navlinks = [
@@ -25,7 +26,14 @@ export const Navlinks = [
     
     let showMenu = false; // Replace useState with a regular variable
     
-    const Navbar = () => {
+    const Navbar = async () => {
+      const supabase = createClient()
+
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+      console.log(error)
+      console.log(data?.user)
+    }
     
       const toggleMenu = () => {
         showMenu = !showMenu;
@@ -79,6 +87,9 @@ export const Navlinks = [
                       CONTACTO
                     </a>
                   </li>
+                  {
+                    data
+                  }
                   <li className="py-4">
                     <a href="/auth/login" className="text-orange-600 hover:text-amber-700">
                       <BiUserCircle size={25}/>

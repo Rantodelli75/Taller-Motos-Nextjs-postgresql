@@ -4,11 +4,18 @@ import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
 import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
 import { FaSignOutAlt } from "react-icons/fa";
 import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 let showMenu = false
 
-const Navbar = () => {
+const Navbar = async () => {
+    const supabase = createClient()
 
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+      console.log(error)
+      console.log(data?.user)
+    }
       const toggleMenu = () => {
         showMenu = !showMenu;
       };
@@ -66,12 +73,16 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Users')}
+                        onClick={() => redirect('/components/Users')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     GESTIONAR
                     </button>
                 </li>
+
+                {
+                    !data.user ? <a>Iniciar sesion</a> :
+                
                 <li className="py-4">
                 <Popover placement="bottom" offset={20} showArrow>
                     <PopoverTrigger>
@@ -93,6 +104,7 @@ return (
                     </PopoverContent>
                 </Popover>
                 </li>
+}
                 </ul>
             </nav>
         </div>

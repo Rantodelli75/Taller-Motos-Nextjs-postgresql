@@ -5,9 +5,9 @@ import { createClient } from '@/utils/supabase/server';
 
 export async function POST(request: { json: () => any }) {
     const data = await request.json()
+    console.log(data)
 
-
-    const userFound = await db.usuario.findUnique({
+    const userFound = await db.usuario.findFirst({
         where: {
             email: data.email
         }
@@ -21,7 +21,7 @@ export async function POST(request: { json: () => any }) {
         })
     }
 
-    const cedulaFound = await db.usuario.findUnique({
+    const cedulaFound = await db.usuario.findFirst({
         where: {
             cedula: data.cedula
         }
@@ -46,7 +46,7 @@ export async function POST(request: { json: () => any }) {
         cedula: data.cedula,
         n_telefono: data.n_telefono,
         email: data.email,
-        clave: data.clave
+        clave: clavesegura
     }
     const newUser = await db.usuario.create({
         data: {
@@ -56,21 +56,16 @@ export async function POST(request: { json: () => any }) {
             cedula: data.cedula,
             n_telefono: data.n_telefono,
             email: data.email,
-            clave: data.clave
+            clave: clavesegura
         }
     })
 
-    async function signup(data: any) {
+    async function signup(datam: any) {
         const supabase = createClient()
       
         // type-casting here for convenience
         // in practice, you should validate your inputs
         const validation = {
-          nombre: data.nombre,
-          apellido: data.apellido,
-          rol: data.rol,
-          cedula: data.cedula,
-          n_telefono: data.n_telefono,
           email: data.email,
           password: data.clave
         }
