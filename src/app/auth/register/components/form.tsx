@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 
 
 interface IFormInput{
+  rol: String
   nombre: string
   apellido: string
   cedula: string
@@ -51,7 +52,9 @@ function Registerpage()  {
       </div>
     <form onSubmit={onSubmit}>
     <label className='text-gray-500 ml-3 mt-3 text-sm'>ROL </label>
-      <select required name="rol" id="rol" className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-13'>
+      <select required  id="rol" className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-13'
+      {...register("rol", { validate: (value) => value !== "0" })}
+      >
       <option value="empty" selected></option>
       <option value="administrador">Administrador</option>
       <option value="empleado">Empleado</option>

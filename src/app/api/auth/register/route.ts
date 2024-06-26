@@ -42,6 +42,7 @@ export async function POST(request: { json: () => any }) {
     const datam =  {
         nombre: data.nombre,
         apellido: data.apellido,
+        rol: data.rol,
         cedula: data.cedula,
         n_telefono: data.n_telefono,
         email: data.email,
@@ -51,6 +52,7 @@ export async function POST(request: { json: () => any }) {
         data: {
             nombre: data.nombre,
             apellido: data.apellido,
+            rol: data.rol,
             cedula: data.cedula,
             n_telefono: data.n_telefono,
             email: data.email,
@@ -66,6 +68,7 @@ export async function POST(request: { json: () => any }) {
         const validation = {
           nombre: data.nombre,
           apellido: data.apellido,
+          rol: data.rol,
           cedula: data.cedula,
           n_telefono: data.n_telefono,
           email: data.email,
