@@ -5,6 +5,7 @@ import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react
 import { FaSignOutAlt } from "react-icons/fa";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
+import { logout } from "@/app/api/auth/logout/route";
 
 let showMenu = false
 
@@ -26,7 +27,7 @@ const Navbar = async () => {
     }
 
   //const isAuthenticated = Boolean(currentUser);
-
+  
 
 return (
     <div
@@ -98,7 +99,10 @@ return (
                             <a  className="flex text-orange-600 hover:text-amber-700" href="../auth/login">
                                 <FaSignOutAlt size={25}/>
                             </a>
-                            <a className="ml-3" href="../auth/login">Salir</a>
+                            <button >
+
+                            <a onClick={() => logout()} className="ml-3">Salir</a>
+                            </button>
                             </div>
                         </div>
                     </PopoverContent>
