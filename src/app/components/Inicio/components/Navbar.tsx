@@ -1,18 +1,17 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
-import { useRouter } from 'next/navigation';
 import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
 import { FaSignOutAlt } from "react-icons/fa";
+import { redirect } from "next/navigation";
 
-
+let showMenu = false
 
 const Navbar = () => {
-const [showMenu, setShowMenu] = useState(false);
 
-const toggleMenu = () => {
-    setShowMenu(!showMenu);
-};
+      const toggleMenu = () => {
+        showMenu = !showMenu;
+      };
 
 
     function signOut() {
@@ -20,7 +19,7 @@ const toggleMenu = () => {
     }
 
   //const isAuthenticated = Boolean(currentUser);
-    const router = useRouter()
+
 
 return (
     <div
@@ -35,7 +34,7 @@ return (
                 <ul className="flex items-center gap-8">
                 <li className="py-4">
                 <button
-                    onClick={() => router.push('')}
+                    onClick={() => redirect('')}
                     className=" text-lg font-medium  text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                 >
                 INICIO
@@ -43,7 +42,7 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Inicio')}
+                        onClick={() => redirect('/components/Inicio')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     SERVICIOS
@@ -51,7 +50,7 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Mimoto')}
+                        onClick={() => redirect('/components/Mimoto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     MI MOTO
@@ -59,7 +58,7 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Contacto')}
+                        onClick={() => redirect('/components/Contacto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO

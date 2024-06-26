@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 
-import { useFormState } from 'react-dom';
+import { redirect } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import axios from "axios";
@@ -27,86 +25,8 @@ interface IFormInput{
 
 
 function Registro () {
-    const { data: session, status, update } = useSession();
-    const router = useRouter();
-    const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
-    const [usuarios, setUsuarios] = useState<any[]>([]);
-    const [selectedUser, setSelectedUser] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-        /*
-        if (status === 'authenticated') {
-            setLoading(false);
-            if (session.user?.rol !== 'empleado') {
-                router.push('/unauthorized');
-            }
-        } else if (status === 'unauthenticated') {
-            setLoading(false);
-            router.push('/api/auth/signin');
-        }*/
-    }, [router, status, session]);
-  
-    useEffect(() => {
-      async function fetchUsuarios() {
-        const response = await axios.get('/api/usuarios'); // Make API call to server-side API
-        console.log(response.config)
-        console.log(response.data)
-        setUsuarios(response.data);
-      }
-      fetchUsuarios();
-    }, []);
-  
-    const handleUserChange = async (e: any) => {
-      const cedula = e.target.value;
-      if (cedula) {
-        const response = await axios.get(`/api/usuarios/${cedula}`); // Make API call to server-side API
-        setSelectedUser(response.data);
-      } else {
-        setSelectedUser(null);
-      }
-    };
-  
-    useEffect(() => {
-      if (selectedUser) {
-        register('nombre', { value: selectedUser.nombre });
-        register('apellido', { value: selectedUser.apellido });
-        register('email', { value: selectedUser.email });
-        register('telefono', { value: selectedUser.telefono });
-      } else {
-        register('nombre', { value: '' });
-        register('apellido', { value: '' });
-        register('email', { value: '' });
-        register('telefono', { value: '' });
-      }
-    }, [register, selectedUser]);
-  
-    console.log(errors);
 
-
-//captura y envio de datos de la moto a la base de datos
-    const onSubmit = handleSubmit(async (data) => {
-        const res = await fetch('/api/auth/register/moto', {
-          method: 'POST',
-          body: JSON.stringify({
-            marca: data.marca,
-            modelo: data.modelo,
-            placa: data.placa,
-            kilometraje: data.kilometraje,
-            nombre: data.nombre,
-            apellido: data.apellido,
-            n_telefono: data.telefono,
-            email: data.email
-          }),
-          headers: {
-              'Content-Type': 'application/json'
-          }
-      })
-      if (res.ok) {
-        router.push('/auth/login')
-      }
-  
-      })
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
     return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
@@ -122,14 +42,14 @@ function Registro () {
                 <label className="text-gray-500 ml-3 mt-1 text-sm">CÉDULA</label>
                 <select
                   className="mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10"
-                  onChange={handleUserChange}
+                  
                 >
                   <option value="">Seleccione un usuario</option>
-                  {usuarios.map((usuario) => (
+                  {/*usuarios.map((usuario) => (
                     <option key={usuario.cedula} value={usuario.cedula} {...register('cedula')}>
                       {usuario.cedula}
                     </option>
-                  ))}
+                  ))*/}
                 </select>
                 <label className="text-gray-500 ml-3 mt-2 mb--3 text-sm">NOMBRE Y APELLIDO</label>
                 <input
@@ -163,7 +83,7 @@ function Registro () {
                 </div>
 
 
-                <form className='mb-12 ml-8'onSubmit={onSubmit}>
+                <form className='mb-12 ml-8'>
                   {/* ... Contenido del segundo formulario ... */}
                 <label className='text-gray-500 ml-3 mt-1 text-sm'>MARCA </label>
                 <input
