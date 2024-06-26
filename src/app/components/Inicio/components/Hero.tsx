@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from "react";
 import motobg from "@/app/elements1/motobg.png"
 import motobackground from "@/app/elements1/motobackground.png"
@@ -9,7 +9,6 @@ import { AuthOptions } from '@/libs/auth';
 /* eslint-disable @next/next/no-img-element */
 
 const Hero =  () => {
-    const router = useRouter();
     return (
     <div className="mt-1 mb-3">
         <div className="container min-h-[620px] flex">
@@ -51,7 +50,7 @@ const Hero =  () => {
                 }}
                 className="rounded-xl bg-neutral-950 hover:bg-orange-600 transition duration-500 py-2 px-6 text-white font-semibold"
             >
-                <a onClick={() => router.push('/components/Registro')}>Registrar Moto</a> 
+                <a onClick={() => redirect('/components/Registro')}>Registrar Moto</a> 
             </button>
         </div>
         </div>
