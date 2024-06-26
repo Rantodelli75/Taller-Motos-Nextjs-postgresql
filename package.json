@@ -12,11 +12,8 @@
     "@next-auth/prisma-adapter": "^1.0.7",
     "@nextui-org/react": "^2.4.2",
     "@prisma/client": "^5.15.0",
-<<<<<<< HEAD
-=======
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.4.0",
->>>>>>> 465b93eacacfee812aef0af9173ec515e357de3c
     "@supabase/supabase-js": "^2.44.0",
     "aos": "^2.3.4",
     "axios": "^1.7.2",
