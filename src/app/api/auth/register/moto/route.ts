@@ -4,29 +4,34 @@ import db from '@/libs/db'
 export async function POST(request: { json: () => any }) {
     const data = await request.json()
 
+    const propietario = db.usuario.findFirst ()
 
-    const userFound = await db.moto.findUnique({
+
+    const motoFound = await db.moto.findUnique({
         where: {
             placa: data.placa
         }
     })
 
-    if (userFound) {
+    if (motoFound) {
         return NextResponse.json({
-            message: "El numero de placa ya fue registrado"
+            message: "La placa ya esta registrada"
         },{
             status: 400
         })
     }
 
-    const newMoto = await db.moto.create({
+    const newmoto = await db.moto.create({
         data: {
-            marca: data.marca,
             placa: data.placa,
+            marca: data.marca,
+            kilometraje: data.kilometraje,
             modelo: data.modelo,
-            kilometraje: data.kilometraje
+            usuarioId: propietario
         }
     })
 
-    return NextResponse.json(newMoto)
+    console.log(propietario)
+
+    return NextResponse.json(newmoto)
 }

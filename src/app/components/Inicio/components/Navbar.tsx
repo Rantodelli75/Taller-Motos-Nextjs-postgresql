@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
 import { useRouter } from 'next/navigation';
 import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
-import { BsArrowBarRight } from "react-icons/bs";
+import { FaSignOutAlt } from "react-icons/fa";
 
 
 
@@ -78,7 +78,7 @@ return (
                             <div className="text-tiny p-2 text-gray-400 font-semibold">rafcovte@gmail.com</div>
                             <div className="flex text-orange-600 hover:text-amber-700 p-2">
                             <a  className="flex text-orange-600 hover:text-amber-700" href="../auth/login">
-                                <BsArrowBarRight size={25}/>
+                                <FaSignOutAlt size={25}/>
                             </a>
                             <a className="ml-3" href="../auth/login">Salir</a>
                             </div>
