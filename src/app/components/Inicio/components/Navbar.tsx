@@ -65,6 +65,14 @@ return (
                     </button>
                 </li>
                 <li className="py-4">
+                    <button
+                        onClick={() => router.push('/components/Users')}
+                        className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
+                    >
+                    GESTIONAR
+                    </button>
+                </li>
+                <li className="py-4">
                 <Popover placement="bottom" offset={20} showArrow>
                     <PopoverTrigger>
                         <a  className="text-orange-600 hover:text-amber-700">
