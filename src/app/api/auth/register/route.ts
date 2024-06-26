@@ -41,6 +41,7 @@ export async function POST(request: { json: () => any }) {
     
     const datam =  {
         nombre: data.nombre,
+        apellido: data.apellido,
         cedula: data.cedula,
         n_telefono: data.n_telefono,
         email: data.email,
@@ -49,6 +50,7 @@ export async function POST(request: { json: () => any }) {
     const newUser = await db.usuario.create({
         data: {
             nombre: data.nombre,
+            apellido: data.apellido,
             cedula: data.cedula,
             n_telefono: data.n_telefono,
             email: data.email,
@@ -63,6 +65,7 @@ export async function POST(request: { json: () => any }) {
         // in practice, you should validate your inputs
         const validation = {
           nombre: data.nombre,
+          apellido: data.apellido,
           cedula: data.cedula,
           n_telefono: data.n_telefono,
           email: data.email,

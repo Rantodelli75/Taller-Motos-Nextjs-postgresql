@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import router from 'next/router';
 import { useForm } from 'react-hook-form';
@@ -14,7 +14,6 @@ interface IFormInput{
   email: string
   clave: string
 }
-
 
 
 function Registerpage()  {
@@ -44,9 +43,6 @@ function Registerpage()  {
     console.log(errors)
     })
 
-    
-
-
   return (
     <div className='w-full max-w-md'>
       <div className='mb-6'>
@@ -61,6 +57,8 @@ function Registerpage()  {
       <option value="empleado">Empleado</option>
       <option value="cliente">Cliente</option>
       </select>
+
+
       <label className='text-gray-500 ml-3 mt-3 text-sm'>NOMBRE </label>
       <input
         className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-12'

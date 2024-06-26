@@ -1,4 +1,4 @@
-
+'use server'
 import { redirect } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
