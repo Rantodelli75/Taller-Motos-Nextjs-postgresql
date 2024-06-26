@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
+import { login } from "./actions";
 
 
 interface IFormInput{
@@ -19,18 +20,12 @@ function LoginPage() {
     const onSubmit = handleSubmit(async (data) => {
         console.log(data)
 
-        const res = await signIn('credentials', {
+        const res = await login( {
             email: data.email,
             clave: data.clave,
-            redirect: false
         })
         console.log(res)
 
-        if (res.error){
-            alert(res.error)
-        } else {
-            router.push('/..')
-        }
     })
 
   return (

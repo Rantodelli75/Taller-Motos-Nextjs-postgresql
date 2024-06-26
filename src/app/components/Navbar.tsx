@@ -1,4 +1,4 @@
-
+'use client'
 import React, { useState } from "react";
 import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
