@@ -55,12 +55,12 @@ function Registerpage()  {
     <form onSubmit={onSubmit}>
     <label className='text-gray-500 ml-3 mt-3 text-sm'>ROL </label>
       <select required  id="rol" className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-13'
-      {...register("rol", { validate: (value) => value !== "0" })}
+      {...register("rol", { validate: (value) => value !== "0",
+    setValueAs: (value) => value})}
       >
-      <option value="empty" selected></option>
-      <option value="administrador">Administrador</option>
+      <option value="admin">Administrador</option>
       <option value="empleado">Empleado</option>
-      <option value="cliente">Cliente</option>
+      <option value="cliente" selected>Cliente</option>
       </select>
 
 
