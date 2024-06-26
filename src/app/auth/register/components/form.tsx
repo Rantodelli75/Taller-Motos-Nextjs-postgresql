@@ -55,7 +55,7 @@ function Registerpage()  {
       </div>
     <form onSubmit={onSubmit}>
     <label className='text-gray-500 ml-3 mt-3 text-sm'>ROL </label>
-      <select name="rol" id="rol" className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-13'>
+      <select required name="rol" id="rol" className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-13'>
       <option value="empty" selected></option>
       <option value="administrador">Administrador</option>
       <option value="empleado">Empleado</option>
@@ -87,7 +87,9 @@ function Registerpage()  {
         <input
         className='mt-2 rounded-xl mb-3 p-4 w-full text-slate-950 bg-gray-200 flex h-12 placeholder-slate-400'
         type="text"
-        placeholder="EJ: V-28439221"
+        min={8}
+        max={8}
+        placeholder="EJ: 28439221"
         required
         {...register("cedula")}
         />
@@ -96,7 +98,9 @@ function Registerpage()  {
       <input
         className='mt-2 rounded-xl mb-3 text-slate-950 p-4 w-full bg-gray-200 flex h-12 placeholder-slate-400'
         type="text"
-        placeholder="EJ: +584125514378"
+        min={11}
+        max={11}
+        placeholder="EJ: 04125514378"
         required
         {...register("telefono")}
       />
