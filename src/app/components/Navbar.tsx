@@ -4,7 +4,8 @@ import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import { useRouter } from 'next/navigation';
 import { createClient } from "@/utils/supabase/server";
-
+import { DiBackbone } from "react-icons/di";
+import db from "@/libs/db"
 
 export const Navlinks = [
     {
@@ -33,6 +34,12 @@ export const Navlinks = [
     if (error || !data?.user) {
       console.log(error)
       console.log(data?.user)
+    }else {
+        const userData = await db.usuario.findUnique({
+            where: {
+                email: data.user.email
+            }
+        })
     }
     
       const toggleMenu = () => {
@@ -88,7 +95,7 @@ export const Navlinks = [
                     </a>
                   </li>
                   {
-                    data
+                    data?.user
                   }
                   <li className="py-4">
                     <a href="/auth/login" className="text-orange-600 hover:text-amber-700">

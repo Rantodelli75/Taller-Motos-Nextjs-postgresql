@@ -6,6 +6,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { logout } from "@/app/api/auth/logout/route";
+import db from "@/libs/db"
 
 let showMenu = false
 
@@ -16,6 +17,12 @@ const Navbar = async () => {
     if (error || !data?.user) {
       console.log(error)
       console.log(data?.user)
+    }else {
+        const userData = await db.usuario.findUnique({
+            where: {
+                email: data.user.email
+            }
+        })
     }
       const toggleMenu = () => {
         showMenu = !showMenu;
@@ -72,14 +79,14 @@ return (
                     CONTACTO
                     </button>
                 </li>
-                <li className="py-4">
+               { !data?.user ? null : userData.rol == "admin" ? <li className="py-4">
                     <button
                         onClick={() => redirect('/components/Users')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     GESTIONAR
                     </button>
-                </li>
+                </li> : null}
 
                 {
                     !data.user ? <a href="auth/login">Iniciar sesion</a> :
