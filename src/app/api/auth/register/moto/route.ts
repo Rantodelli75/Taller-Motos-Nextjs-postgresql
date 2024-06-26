@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import db from '@/libs/db'
+import { user } from '@nextui-org/react';
 
 export async function POST(request: { json: () => any }) {
     const data = await request.json()
 
-    const propietario = db.usuario.findFirst ()
+    async function getPrimeiroUsuarioId() {
+        const usuario = await db.usuario.findFirst();
+        return usuario?.Id;
+      }
 
 
     const motoFound = await db.moto.findUnique({
@@ -21,17 +25,18 @@ export async function POST(request: { json: () => any }) {
         })
     }
 
-    const newmoto = await db.moto.create({
-        data: {
-            placa: data.placa,
-            marca: data.marca,
-            kilometraje: data.kilometraje,
-            modelo: data.modelo,
-            usuarioId: propietario
-        }
-    })
+    const primeiroUsuarioId = await getPrimeiroUsuarioId();
+  const newmoto = await db.moto.create({
+    data: {
+      usuarioId: primeiroUsuarioId,
+      placa: data.placa,
+      marca: data.marca,
+      modelo: data.modelo,
+      kilometraje: data.kilometraje,
+    },
+  });
 
-    console.log(propietario)
+    console.log(getPrimeiroUsuarioId)
 
     return NextResponse.json(newmoto)
 }
