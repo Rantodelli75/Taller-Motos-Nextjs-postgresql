@@ -126,9 +126,12 @@ const totalCost = services.reduce((acc, service) => acc + service.cost, 0);
                 <div className="flex justify-end font-bold mt-4 mr-4 text-green-800">
                 Total: $ {totalCost.toLocaleString()}
                 </div>
+                <button onClick={handleAddService} className="items-center ml-96 w-2/12 rounded-xl bg-amber-600 border border-amber-600 hover:border-amber-600 hover:bg-white hover:text-amber-600 font-semibold h-12 text-white relative p-1">
+                    Enviar
+                </button>
               {/* Fin de la gestión de servicios */}
-                            </div>
-                            </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>
