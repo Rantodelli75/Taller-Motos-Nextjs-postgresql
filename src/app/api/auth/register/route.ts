@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import db from '@/libs/db'
 import bcrypt from 'bcrypt'
+import { createClient } from '@/utils/supabase/server';
 
 export async function POST(request: { json: () => any }) {
     const data = await request.json()
@@ -35,8 +36,16 @@ export async function POST(request: { json: () => any }) {
     }
 
 
-  
     const clavesegura = await bcrypt.hash(data.clave, 10)
+
+    
+    const datam =  {
+        nombre: data.nombre,
+        cedula: data.cedula,
+        n_telefono: data.n_telefono,
+        email: data.email,
+        clave: clavesegura
+    }
     const newUser = await db.usuario.create({
         data: {
             nombre: data.nombre,
@@ -46,6 +55,28 @@ export async function POST(request: { json: () => any }) {
             clave: clavesegura
         }
     })
+
+    async function signup(data: any) {
+        const supabase = createClient()
+      
+        // type-casting here for convenience
+        // in practice, you should validate your inputs
+        const validation = {
+          nombre: data.nombre,
+          cedula: data.cedula,
+          n_telefono: data.n_telefono,
+          email: data.email,
+          password: clavesegura
+        }
+      
+        const { error } = await supabase.auth.signUp(validation)
+      
+        if (error) {
+          console.log(error)
+        }
+      }
+
+    signup(datam)
 
     return NextResponse.json(newUser)
 }
