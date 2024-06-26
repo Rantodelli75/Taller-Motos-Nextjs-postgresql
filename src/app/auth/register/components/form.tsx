@@ -22,10 +22,12 @@ function Registerpage()  {
   const router = useRouter()
 
     const onSubmit = handleSubmit(async (data) => {
+   
       const res = await fetch('/api/auth/register', {
         method: 'POST',
         body: JSON.stringify({
           nombre: data.nombre,
+          rol:data.rol,
           apellido: data.apellido,
           cedula: data.cedula,
           n_telefono: data.telefono,

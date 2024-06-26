@@ -12,9 +12,7 @@ export default async function PrivatePage() {
     redirect('/')
   }
 
-  return <div className="scroll-smooth bg-white text-black overflow-x-hidden">
-  {data?.user?.email || null}
-  <Navbar />
-  <Registro/>
-</div>
+  return <p>Hello {data?.user?.email}</p>
+
+
 }
