@@ -46,7 +46,7 @@ export async function POST(request: { json: () => any }) {
         cedula: data.cedula,
         n_telefono: data.n_telefono,
         email: data.email,
-        clave: clavesegura
+        clave: data.clave
     }
     const newUser = await db.usuario.create({
         data: {
@@ -56,7 +56,7 @@ export async function POST(request: { json: () => any }) {
             cedula: data.cedula,
             n_telefono: data.n_telefono,
             email: data.email,
-            clave: clavesegura
+            clave: data.clave
         }
     })
 
@@ -72,7 +72,7 @@ export async function POST(request: { json: () => any }) {
           cedula: data.cedula,
           n_telefono: data.n_telefono,
           email: data.email,
-          password: clavesegura
+          password: data.clave
         }
       
         const { error } = await supabase.auth.signUp(validation)
