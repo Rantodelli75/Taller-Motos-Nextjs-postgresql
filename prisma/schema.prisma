@@ -11,6 +11,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Usuario {
@@ -62,7 +63,6 @@ model Moto {
   //moto-reparaciones
   reparaciones Reparaciones @relation(fields: [reparacionesId], references: [Id])
   reparacionesId Int  @unique
-
   //facturas-moto
   Facturasa Facturas?
 }
