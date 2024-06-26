@@ -30,6 +30,35 @@ const Registro = () => {
       .catch((error) => console.error(error));
   };
 
+import { redirect } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { useSession } from 'next-auth/react';
+import axios from "axios";
+
+
+//se define la entrada del dato en cada input
+interface IFormInput{
+    marca: string
+    modelo: string
+    placa: string
+    kilometraje: string
+  }
+
+//se define la entrada del dato en cada input
+  interface IFormInput{
+    nombre: string
+    apellido: string
+    cedula: string
+    telefono: string
+    email: string
+    clave: string
+  }
+
+
+function Registro () {
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
       <h1 className="font-serif text-slate-600 text-xl font-bold mb-4 mt-8">
@@ -49,6 +78,28 @@ const Registro = () => {
                 <label className="text-gray-500 ml-3 mt-1 text-sm">
                   NOMBRE Y APELLIDO
                 </label>
+        <h1 className="font-serif text-slate-600 text-xl font-bold mb-4 mt-8">NUEVO REGISTRO ${JSON.stringify(session)}</h1>
+        <div className="bg-white shadow-xl rounded-lg p-3 items-center w-9/12 overflow-hidden mb-8">
+            <div className="px-4 mb-5">
+                <div className="flex justify-between">
+                    <div className='w-full max-w-md'>
+                        <div className='mb-4 mr-10'>
+                        <p className='font-serif font-semibold text-white text-l p-2 pl-10 w-full m-4 mb-4 rounded-full bg-gray-600'> DATOS DEL CLIENTE</p>
+                        </div>
+                        <form className="mb-12 ml-8">
+                <label className="text-gray-500 ml-3 mt-1 text-sm">CÉDULA</label>
+                <select
+                  className="mt-2 rounded-xl mb-3 p-3 w-9/12 text-slate-950 bg-gray-200 flex h-10"
+                  
+                >
+                  <option value="">Seleccione un usuario</option>
+                  {/*usuarios.map((usuario) => (
+                    <option key={usuario.cedula} value={usuario.cedula} {...register('cedula')}>
+                      {usuario.cedula}
+                    </option>
+                  ))*/}
+                </select>
+                <label className="text-gray-500 ml-3 mt-2 mb--3 text-sm">NOMBRE Y APELLIDO</label>
                 <input
                   className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10"
                   type="text"
@@ -70,6 +121,16 @@ const Registro = () => {
                 <label className="text-gray-500 ml-3 mt-1 text-sm">
                   MARCA
                 </label>
+                    </div>
+            <div className='w-full max-w-md'>
+                <div className='mb-4 mr-8'>
+                <p className='font-serif font-semibold text-white text-l p-2 pl-10 w-full m-4 rounded-full bg-gray-600'>DATOS DEL VEHÍCULO</p>
+                </div>
+
+
+                <form className='mb-12 ml-8'>
+                  {/* ... Contenido del segundo formulario ... */}
+                <label className='text-gray-500 ml-3 mt-1 text-sm'>MARCA </label>
                 <input
                   className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10"
                   type="select"
@@ -94,5 +155,6 @@ const Registro = () => {
     </div>
   );
 };
+export default Registro; 
 
 export default Registro;

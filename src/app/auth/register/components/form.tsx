@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import router from 'next/router';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 
 
 interface IFormInput{
+  rol: String
   nombre: string
   apellido: string
   cedula: string
@@ -16,16 +17,17 @@ interface IFormInput{
 }
 
 
-
 function Registerpage()  {
     const { register, handleSubmit, formState: {errors} } = useForm<IFormInput>()
   const router = useRouter()
 
     const onSubmit = handleSubmit(async (data) => {
+   
       const res = await fetch('/api/auth/register', {
         method: 'POST',
         body: JSON.stringify({
           nombre: data.nombre,
+          rol:data.rol,
           apellido: data.apellido,
           cedula: data.cedula,
           n_telefono: data.telefono,
@@ -44,7 +46,6 @@ function Registerpage()  {
     console.log(errors)
     })
 
-
   return (
     <div className='w-full max-w-md'>
       <div className='mb-6'>
@@ -52,13 +53,16 @@ function Registerpage()  {
       <p className='text-gray-500 text-sm'>Ingresa los siguientes datos para realizar el registro</p>
       </div>
     <form onSubmit={onSubmit}>
-      <label className='text-gray-500 ml-3 mt-3 text-sm'>ROL </label>
-      <select required name="rol" id="rol" className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-700 p-4 bg-gray-200 w-full h-13'>
-      <option value="" disabled selected>Seleccione un rol</option>
-      <option className="text-slate-950" value="administrador">Administrador</option>
-      <option className="text-slate-950" value="empleado">Empleado</option>
-      <option className="text-slate-950" value="cliente">Cliente</option>
+    <label className='text-gray-500 ml-3 mt-3 text-sm'>ROL </label>
+      <select required  id="rol" className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-13'
+      {...register("rol", { validate: (value) => value !== "0",
+    setValueAs: (value) => value})}
+      >
+      <option value="admin">Administrador</option>
+      <option value="empleado">Empleado</option>
+      <option value="cliente" selected>Cliente</option>
       </select>
+
 
       <label className='text-gray-500 ml-3 mt-3 text-sm'>NOMBRE </label>
       <input

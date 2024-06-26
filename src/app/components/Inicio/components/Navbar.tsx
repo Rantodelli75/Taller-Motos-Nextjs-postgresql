@@ -1,18 +1,32 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
-import { useRouter } from 'next/navigation';
 import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
 import { FaSignOutAlt } from "react-icons/fa";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
+import { logout } from "@/app/api/auth/logout/route";
+import db from "@/libs/db"
 
+let showMenu = false
 
+const Navbar = async () => {
+    const supabase = createClient()
 
-const Navbar = () => {
-const [showMenu, setShowMenu] = useState(false);
-
-const toggleMenu = () => {
-    setShowMenu(!showMenu);
-};
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+      console.log(error)
+      console.log(data?.user)
+    }else {
+        const userData = await db.usuario.findUnique({
+            where: {
+                email: data.user.email
+            }
+        })
+    }
+      const toggleMenu = () => {
+        showMenu = !showMenu;
+      };
 
 
     function signOut() {
@@ -20,7 +34,7 @@ const toggleMenu = () => {
     }
 
   //const isAuthenticated = Boolean(currentUser);
-    const router = useRouter()
+  
 
 return (
     <div
@@ -35,7 +49,7 @@ return (
                 <ul className="flex items-center gap-8">
                 <li className="py-4">
                 <button
-                    onClick={() => router.push('/')}
+                    onClick={() => redirect('')}
                     className=" text-lg font-medium  text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                 >
                 INICIO
@@ -43,7 +57,7 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Servicios')}
+                        onClick={() => redirect('/components/Inicio')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     SERVICIOS
@@ -51,7 +65,7 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Mimoto')}
+                        onClick={() => redirect('/components/Mimoto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     MI MOTO
@@ -59,20 +73,24 @@ return (
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Contacto')}
+                        onClick={() => redirect('/components/Contacto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     CONTACTO
                     </button>
                 </li>
-                <li className="py-4">
+               { !data?.user ? null : userData.rol == "admin" ? <li className="py-4">
                     <button
-                        onClick={() => router.push('/components/Users')}
+                        onClick={() => redirect('/components/Users')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
                     GESTIONAR
                     </button>
-                </li>
+                </li> : null}
+
+                {
+                    !data.user ? <a href="auth/login">Iniciar sesion</a> :
+                
                 <li className="py-4">
                 <Popover placement="bottom" offset={20} showArrow>
                     <PopoverTrigger>
@@ -82,18 +100,22 @@ return (
                     </PopoverTrigger>
                     <PopoverContent>
                         <div className="px-1 py-2 text-slate-950 bg-gray-200 rounded-xl w-full h-36">
-                            <div className="text-small font-bold p-2 text-gray-500">Rafael José Covarrubio</div>
-                            <div className="text-tiny p-2 text-gray-400 font-semibold">rafcovte@gmail.com</div>
+                            <div className="text-small font-bold p-2 text-gray-500">Bienvenido</div>
+                            <div className="text-tiny p-2 text-gray-400 font-semibold">{data.user.email}</div>
                             <div className="flex text-orange-600 hover:text-amber-700 p-2">
                             <a  className="flex text-orange-600 hover:text-amber-700" href="../auth/login">
                                 <FaSignOutAlt size={25}/>
                             </a>
-                            <a className="ml-3" href="../auth/login">Salir</a>
+                            <button >
+
+                            <a onClick={() => logout()} className="ml-3">Salir</a>
+                            </button>
                             </div>
                         </div>
                     </PopoverContent>
                 </Popover>
                 </li>
+}
                 </ul>
             </nav>
         </div>
