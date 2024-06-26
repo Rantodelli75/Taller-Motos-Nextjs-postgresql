@@ -62,6 +62,9 @@ export async function POST(request: { json: () => any }) {
         // type-casting here for convenience
         // in practice, you should validate your inputs
         const validation = {
+          nombre: data.nombre,
+          cedula: data.cedula,
+          n_telefono: data.n_telefono,
           email: data.email,
           password: clavesegura
         }
