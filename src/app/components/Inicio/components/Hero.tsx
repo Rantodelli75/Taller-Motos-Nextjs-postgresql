@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react";
 import motobg from "@/app/elements1/motobg.png"
 import motobackground from "@/app/elements1/motobackground.png"
 import AOS from "aos";
-import { link } from "fs";
-import { getServerSession } from 'next-auth';
-import { AuthOptions } from '@/libs/auth';
 /* eslint-disable @next/next/no-img-element */
 
 const Hero =  () => {
