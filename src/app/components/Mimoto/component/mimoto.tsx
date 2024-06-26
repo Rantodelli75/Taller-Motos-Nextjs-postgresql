@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 interface ServiceItem {
-    name: string;
-    cost: number;
-    estimatedTime: string;
+  name: string;
+  cost: number;
+  estimatedTime: string;
 }
 
 const availableServices: ServiceItem[] = [
@@ -127,7 +127,7 @@ class Registro extends Component {
                             </button>
                         </td>
                         <td className="px-4 py-2">{service.name}</td>
-                        <td className="px-4 py-2  text-green-800">${service.cost.toLocaleString()}</td>
+                        <td className="px-4 py-2">${service.cost.toLocaleString()}</td>
                         <td className="px-4 py-2">{service.estimatedTime}</td>
                         </tr>
                     ))}
@@ -142,7 +142,7 @@ class Registro extends Component {
         </div>
         </div>
     );
-    }
-}
+    };
+};
 
 export default Registro;
