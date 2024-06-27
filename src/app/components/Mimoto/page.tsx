@@ -1,4 +1,4 @@
-
+"use Client"
 // Component import
 import Navbar from "@/app/components/Inicio/components/Navbar";
 import Mimoto from "./component/mimoto";

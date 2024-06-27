@@ -16,6 +16,7 @@ const Navbar = async () => {
     
     
     const { data, error } = await supabase.auth.getUser()
+
     if (error || !data?.user) {
       console.log(error)
       console.log(data?.user)
@@ -32,6 +33,7 @@ const Navbar = async () => {
 
   //const isAuthenticated = Boolean(currentUser);
   
+        const isLoggedIn = Boolean(data?.user);
 
 return (
     <div
@@ -46,34 +48,40 @@ return (
                 <ul className="flex items-center gap-8">
                 <li className="py-4">
                 <button
-                    onClick={() => redirect('@/')}
                     className=" text-lg font-medium  text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
-                >
+                ><a href="/">
+
                 INICIO
+                </a>
                 </button>
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => redirect('/components/Inicio')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
+                        <a href="/components/Servicios">
+
                     SERVICIOS
+                        </a>
                     </button>
                 </li>
                 <li className="py-4">
                     <button
-                        onClick={() => redirect('/components/Mimoto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
-                    >
+                    ><a href="/components/Mimoto">
+
                     REGISTRAR MOTO
+                    </a>
                     </button>
                 </li> 
                 <li className="py-4">
                     <button
-                        onClick={() => redirect('/components/Contacto')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
+                        <a href="/components/Contacto">
+
                     CONTACTO
+                        </a>
                     </button>
                 </li>
                 <li className="py-4">
@@ -81,14 +89,17 @@ return (
                         onClick={() => redirect('/components/Users')}
                         className=" text-lg font-medium text-gray-600 hover:text-primary py-2 hover:border-b-2 hover:border-orange-600 transition-colors duration-500  "
                     >
+                        <a href="/components/USers">
+                        
                     GESTIONAR
+                        </a>
                     </button>
                 </li> 
 
                 
                 
                 <li className="py-4">
-                { !data?.user?.email ? null : <Popover placement="bottom" offset={20} showArrow>
+                { !isLoggedIn ? (<a href="/auth/login">Iniciar Sesion</a>) : (<Popover placement="bottom" offset={20} showArrow>
                     <PopoverTrigger>
                         <a  className="text-orange-600 hover:text-amber-700">
                         <BiUserCircle size={25}/>
@@ -97,7 +108,7 @@ return (
                     <PopoverContent>
                         <div className="px-1 py-2 text-slate-950 bg-gray-200 rounded-xl w-full h-36">
                             <div className="text-small font-bold p-2 text-gray-500">Bienvenido</div>
-                            <div className="text-tiny p-2 text-gray-400 font-semibold">{data.user.email}</div>
+                            <div className="text-tiny p-2 text-gray-400 font-semibold">{data?.user?.email}</div>
                             <div className="flex text-orange-600 hover:text-amber-700 p-2">
                             <a  className="flex text-orange-600 hover:text-amber-700" href="../auth/login">
                                 <FaSignOutAlt size={25}/>
@@ -109,7 +120,7 @@ return (
                             </div>
                         </div>
                     </PopoverContent>
-                </Popover>}
+                </Popover>)}
                 </li>
 
                 </ul>
