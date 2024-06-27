@@ -1,7 +1,8 @@
+"use client"
 import { redirect } from 'next/navigation';
 import { useForm } from 'react-hook-form'; 
 
-const Registro = () => {
+
   
   interface IFormInput {
     marca: string;
@@ -52,7 +53,7 @@ const Registro = () => {
   };
   
   const Registro = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
+    const { register, handleSubmit, formState: {errors} } = useForm<IFormInput>()
   
     return (
       <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
@@ -118,5 +119,5 @@ const Registro = () => {
       </div>
     );
   };
-};
+;
   export default Registro;
