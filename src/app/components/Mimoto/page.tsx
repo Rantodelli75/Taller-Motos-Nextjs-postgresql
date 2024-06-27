@@ -1,8 +1,7 @@
 "use Client"
-// Component import
+
 import Navbar from "@/app/components/Inicio/components/Navbar";
 import Mimoto from "./component/mimoto";
-/*import Mimoto from "@/app/components/Mimoto/component/mimoto"*/
 
 const App = () => {
     return (
