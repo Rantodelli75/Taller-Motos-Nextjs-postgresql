@@ -1,3 +1,4 @@
+import  db  from '@/libs/db';
 'use server'
 
 import { revalidatePath } from 'next/cache'
@@ -6,7 +7,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 
 export async function login(datax:any) {
-  const supabase = createClient()
+  const db = createClient()
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -15,7 +16,7 @@ export async function login(datax:any) {
     password: datax.clave
   }
 
-  const { error } = await supabase.auth.signInWithPassword(data)
+  const { error } = await db.auth.signInWithPassword(data)
 
   if (error) {
     redirect('/error')

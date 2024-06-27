@@ -68,6 +68,8 @@ function Registerpage()  {
       <input
         className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-12'
         type="text"
+        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ']+ " 
+        title="Ingrese solo caracteres alfabéticos"
         required
         {...register("nombre", {required: {
           value: true,
@@ -79,6 +81,8 @@ function Registerpage()  {
         <input
           className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-12'
           type="text"
+          pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ']+ " 
+          title="Ingrese solo caracteres alfabéticos"
           required
           {...register("apellido", {required: {
             value: true,
@@ -93,6 +97,9 @@ function Registerpage()  {
         min={8}
         max={8}
         placeholder="EJ: 28439221"
+        inputMode="numeric" 
+        pattern="[0-9]{8}" 
+        title="Ingrese 8 dígitos numéricos"
         required
         {...register("cedula")}
         />
@@ -104,6 +111,9 @@ function Registerpage()  {
         min={11}
         max={11}
         placeholder="EJ: 04125514378"
+        inputMode="numeric" 
+        pattern="[0-9]{11}" 
+        title="Ingrese 11 dígitos numéricos"
         required
         {...register("telefono")}
       />
@@ -122,6 +132,8 @@ function Registerpage()  {
         className='mt-2 rounded-xl p-4 w-full text-slate-950 bg-gray-200 flex h-12'
         type="password"
         placeholder=""
+        pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+        title="La contraseña debe tener al menos una mayúscula, un número y un símbolo especial."
         required
         {...register("clave")}
       />
