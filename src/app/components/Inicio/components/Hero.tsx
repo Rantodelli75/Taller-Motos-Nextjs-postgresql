@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import motobg from "@/app/elements1/motobg.png"
 import motobackground from "@/app/elements1/motobackground.png"
 import AOS from "aos";
+import Link from 'next/link';
 /* eslint-disable @next/next/no-img-element */
 
 const Hero = () => {
@@ -40,16 +41,18 @@ const Hero = () => {
             <p data-aos="fade-up" data-aos-delay="1000">
             Somos una página dedicada al manejo y gestión de motocicletas, repuestos y contamos con un centro de servicios para el cuidado de tu inversión. {" "}
             </p>
+            <Link href="/components/Registro">
             <button
                 data-aos="fade-up"
                 data-aos-delay="1500"
                 onClick={() => {
                 AOS.refreshHard();
                 }}
-                className="rounded-xl bg-neutral-950 hover:bg-orange-600 transition duration-500 py-2 px-6 text-white font-semibold"
+                className="rounded-xl mt-4 bg-neutral-950 hover:bg-orange-600 transition duration-500 py-2 px-6 text-white font-semibold"
             >
-                <a href="#">Registrar Moto</a> 
+                <a>Registrar Moto</a> 
             </button>
+            </Link>
         </div>
         </div>
     </div>

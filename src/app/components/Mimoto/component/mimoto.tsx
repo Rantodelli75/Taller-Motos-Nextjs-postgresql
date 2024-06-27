@@ -1,5 +1,6 @@
 "use client"
 import React, { Component } from 'react';
+import Link from "next/link"
 
 interface ServiceItem {
   name: string;
@@ -137,6 +138,9 @@ class Registro extends Component {
                 <div className="flex justify-end font-bold mt-4 mr-4 text-green-800">
                 Total: $ {totalCost.toLocaleString()}
                 </div>
+                <button onClick={this.handleAddService} className="items-center ml-96 w-2/12 rounded-xl bg-amber-600 border border-amber-600 hover:border-amber-600 hover:bg-white hover:text-amber-600 font-semibold h-12 text-white relative p-1">
+                    Enviar
+                </button>
                 </div>
             </div>
             </div>
