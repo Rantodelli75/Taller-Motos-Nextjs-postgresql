@@ -68,7 +68,7 @@ function Registerpage()  {
       <input
         className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-12'
         type="text"
-        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ']+ " 
+        pattern="[a-zA-Z\u00F1\u00D1áéíóúÁÉÍÓÚ ']+"
         title="Ingrese solo caracteres alfabéticos"
         required
         {...register("nombre", {required: {
@@ -81,7 +81,7 @@ function Registerpage()  {
         <input
           className='mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-4 bg-gray-200 w-full h-12'
           type="text"
-          pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ']+ " 
+          pattern="[a-zA-Z\u00F1\u00D1áéíóúÁÉÍÓÚ ']+"
           title="Ingrese solo caracteres alfabéticos"
           required
           {...register("apellido", {required: {
