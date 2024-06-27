@@ -29,17 +29,28 @@ export const Navlinks = [
     
     const Navbar = async () => {
       const supabase = createClient()
-
+ const onSubmit = async (data:any) => {
+   
+      const res = await fetch('/api/usuario', {
+        method: 'GET',
+        body: JSON.stringify({
+          email: data,
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    
+    if (res.ok) {
+        console.log("ok")
+    }
+}
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
       console.log(error)
       console.log(data?.user)
     }else {
-        const userData = await db.usuario.findUnique({
-            where: {
-                email: data.user.email
-            }
-        })
+        onSubmit(data.user.email)
     }
     
       const toggleMenu = () => {
