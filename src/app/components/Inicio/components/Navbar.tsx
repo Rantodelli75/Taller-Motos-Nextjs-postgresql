@@ -114,7 +114,7 @@ const Navbar = () => {
                       </li>
                     
                       <li className="py-4">
-                        {!isLoggedIn? (
+                        { Object.keys(user).length === 0 ? (
                           <Link href="/auth/login">
                             <button>Iniciar Sesion</button>
                           </Link>
@@ -131,14 +131,14 @@ const Navbar = () => {
                                   Bienvenido
                                 </div>
                                 <div className="text-tiny p-2 text-gray-400 font-semibold">
+                                    {user.email}
                                 </div>
                                 <div className="flex text-orange-600 hover:text-amber-700 p-2">
-                                  <Link href="../auth/login">
+                                  
                                     <button className="flex text-orange-600 hover:text-amber-700">
                                       <FaSignOutAlt size={25} />
                                     </button>
-                                  </Link>
-                                  <button onClick={logout} className="ml-3">
+                                  <button onClick={()=> logout()} className="ml-3">
                                     Salir
                                   </button>
                                 </div>
