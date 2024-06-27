@@ -78,7 +78,7 @@ const Services = () => {
                     <span
                         className="text-amber-600 font-bold hover:text-amber-700"
                     >
-                        Eduard Bello
+                        Jorge Gómez
                     </span>
                 </td>
                 <td className="px-16 py-2 font-serif text-gray-700 font-semibold flex justify-center">Cambio de Amortiguador</td>
