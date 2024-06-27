@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 
 // Component import
@@ -5,6 +6,7 @@ import Navbar from "@/app/components/Inicio/components/Navbar";
 import Registro from "@/app/components/Registro/component/registro"
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
+// eslint-disable-next-line @next/next/no-async-client-component
 const  App = async () => {
     const supabase = createClient()
 
