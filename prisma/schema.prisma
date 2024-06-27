@@ -14,6 +14,14 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+
+model Contacto {
+  Id Int @id @default(autoincrement())
+  titulo String
+  descripcion String
+}
+
+
 model Usuario {
   Id Int @id @default(autoincrement())
 	nombre String 
