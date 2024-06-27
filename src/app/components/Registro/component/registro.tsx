@@ -75,11 +75,41 @@ import { useForm } from 'react-hook-form';
                     NOMBRE Y APELLIDO
                   </label>
                   <input
-                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950p-3 bg-gray-200 w-9/12 h-10"
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950p-3 bg-gray-200 w-9/12 h-12 p-3"
                     type="text"
                     placeholder=""
                     required
                     name="nombre"
+                  />
+                  <label className="text-gray-500 ml-3 mt-1 text-sm">
+                    CÉDULA
+                  </label>
+                  <input
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950p-3 bg-gray-200 w-9/12 h-12 p-3"
+                    type="number"
+                    placeholder=""
+                    required
+                    name="cedula"
+                  />
+                  <label className="text-gray-500 ml-3 mt-1 text-sm">
+                    EMAIL
+                  </label>
+                  <input
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950p-3 bg-gray-200 w-9/12 h-12 p-3"
+                    type="email"
+                    placeholder="EJ: marcomartinez@gmail.com"
+                    required
+                    name="email"
+                  />
+                  <label className="text-gray-500 ml-3 mt-1 text-sm">
+                    TELÉFONO
+                  </label>
+                  <input
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950p-3 bg-gray-200 w-9/12 h-12 p-3"
+                    type="number"
+                    placeholder="EJ: 04125514378"
+                    required
+                    name="telefono"
                   />
                   {/* ... */}
                 </form>
@@ -96,11 +126,41 @@ import { useForm } from 'react-hook-form';
                     MARCA
                   </label>
                   <input
-                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-10"
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-12"
                     type="select"
                     placeholder=""
                     required
                     name="marca"
+                  />
+                  <label className="text-gray-500 ml-3 mt-1 text-sm">
+                    MODELO
+                  </label>
+                  <input
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-12"
+                    type="select"
+                    placeholder=""
+                    required
+                    name="modelo"
+                  />
+                  <label className="text-gray-500 ml-3 mt-1 text-sm">
+                    N° PLACA
+                  </label>
+                  <input
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-12"
+                    type="select"
+                    placeholder="EJ: AE139MI"
+                    required
+                    name="placa"
+                  />
+                  <label className="text-gray-500 ml-3 mt-1 text-sm">
+                    KILOMETRAJE
+                  </label>
+                  <input
+                    className="mt-2 flex max-w-full mb-3 rounded-xl text-slate-950 p-3 bg-gray-200 w-9/12 h-12"
+                    type="number"
+                    placeholder="EJ: 1250"
+                    required
+                    name="kilometraje"
                   />
                   {/* ... */}
                 </form>
