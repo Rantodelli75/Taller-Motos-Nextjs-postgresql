@@ -1,4 +1,4 @@
-
+"use client"
 import React, { useEffect, useState } from "react";
 import { BiSolidSun, BiSolidMoon, BiUserCircle } from "react-icons/bi";
 import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
