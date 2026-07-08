@@ -1,4 +1,4 @@
-![Landing – FORZA MOTORCLUB](./docs/img/scrennshot/inicio-forza-motorclub.png)
+![Landing – FORZA MOTORCLUB](./docs/img/scrennshots/inicio-forza-motorclub.png)
 ![Nuevo registro de cliente y vehículo](./docs/img/nuevo-registro-moto.png)
 ![Sección de contacto](./docs/img/contacto-forza-motorclub.png)
 ![Pantalla de inicio de sesión](./docs/img/login-forza-motorclub.png)
